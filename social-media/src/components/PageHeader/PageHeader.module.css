@@ -1,0 +1,8 @@
+.marginTop {
+    margin-top: 50px;
+}
+
+.grid {
+    display: grid;
+    grid-gap: 20px;
+}

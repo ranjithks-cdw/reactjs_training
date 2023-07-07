@@ -4,6 +4,11 @@ import Header from '../Header/Header';
 import Title from '../Title/Title';
 import Main from '../Main/Main';
 
+/**
+ * @description Method to consrtuct card
+ * @returns card
+ * @author @ranjithks-cdw
+ */
 const Card = ({data}) => {
     const hasMoreTags = data.tags && data.tags.length > 6;
     const tags = data.tags && data.tags.slice(0,6);
@@ -22,7 +27,6 @@ const Card = ({data}) => {
                         {hasMoreTags ? (
                             <li className={styles.tags}>...</li>
                         ) : ''}
-                        {/* <li className={styles.tags></li> */}
                     </ul>
                 </Main>
             </div>

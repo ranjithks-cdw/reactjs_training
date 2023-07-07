@@ -6,7 +6,7 @@ import styles from './Title.module.css';
  * @author @ranjithks-cdw
  */
 const Title = ({isPageTitle, children}) => {
-    return <h1 className={isPageTitle ? styles.pageTitle : styles.cardTitle}>{children}</h1>;
+    return <h1 className={`${styles.title} ${isPageTitle ? styles.pageTitle : styles.cardTitle}`}>{children}</h1>;
 };
 
 export default Title;

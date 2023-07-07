@@ -13,9 +13,10 @@
     font-weight: 500;
     color: #5C6170;
     list-style: none;
+    cursor: pointer;
 }
 
-.navLinks li:hover {
+.navLinks li:hover, .navLinks .active{
     color: #FFF;
     background-color: #849FFF;
 }

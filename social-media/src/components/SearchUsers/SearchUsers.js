@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './SearchUsers.module.css';
-import Input from '../Input/Input';
+import Input from '../input/Input';
 
 /**
  * @description Function to create search user input component

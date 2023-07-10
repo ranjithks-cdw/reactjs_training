@@ -5,7 +5,7 @@ import style from './NavLinks.module.css';
  * @author @ranjithks-cdw
  */
 const NavLinks = ({navigationLinks}) => {
-    const links = navigationLinks && navigationLinks.map(link => <li className={link==='New Users' ? style.active : ''}>{link}</li>);
+    const links = navigationLinks && navigationLinks.map(link => <li key={link} className={link==='New Users' ? style.active : ''}>{link}</li>);
     return (
         <ul className={style.navLinks}>
             {links}

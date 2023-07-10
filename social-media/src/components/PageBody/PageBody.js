@@ -1,6 +1,5 @@
-import Main from '../Main/Main';
 import userData from '../../services/userData.json';
-import Card from '../Card/Card';
+import Card from '../card/Card';
 import styles from './PageBody.module.css';
 /**
  * @description Method to construct Page body
@@ -8,12 +7,11 @@ import styles from './PageBody.module.css';
  * @author @ranjithks-cdw
  */
 const PageBody = () => {
+    const cardData = userData ? userData.map(user => <Card data={user} key={user} />): <h2>No Data Found!</h2>;
     return (
-        <Main className={styles.cardsContainer}>
-            {userData && userData.map(user => (
-                <Card data={user} />
-            ))}
-        </Main>
+        <main className={styles.cardsContainer}>
+            {cardData}
+        </main>
     );
 };
 

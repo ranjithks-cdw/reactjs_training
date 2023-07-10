@@ -11,7 +11,7 @@
 
 .card:hover {
     border: 1px solid #C5CEE6;
-    box-shadow: 1px 1px #ECF1FC;
+    box-shadow: 0px 5px 10px 5px #ECF1FC;
 }
 
 .cardContent {
@@ -42,7 +42,7 @@
     border: 1px solid #849FFF;
     border-radius: 15%/ 55%;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     color: #5A77D7;
     list-style: none;
     cursor: pointer;
@@ -51,4 +51,15 @@
 .tags:hover {
     color: #000;
     border-color: #FFF;
+}
+
+.imageContainer {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.cardTitle {
+    font-size: 1.5rem;
 }

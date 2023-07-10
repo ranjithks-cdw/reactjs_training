@@ -1,8 +1,4 @@
 import styles from './Card.module.css';
-import Image from '../Image/Image';
-import Header from '../Header/Header';
-import Title from '../Title/Title';
-import Main from '../Main/Main';
 
 /**
  * @description Method to consrtuct card
@@ -12,23 +8,25 @@ import Main from '../Main/Main';
 const Card = ({data}) => {
     const hasMoreTags = data.tags && data.tags.length > 6;
     const tags = data.tags && data.tags.slice(0,6);
-    const visibleTags = tags && tags.map(tag => <li className={styles.tags}>{tag}</li>)
+    const visibleTags = tags && tags.map(tag => <li key={tag} className={styles.tags}>{tag}</li>)
     return (
         <div className={styles.card}>
-            <Image src={data.picture} alt={data.name} />
+            <div className={styles.imageContainer}>
+                <img src={data.picture} alt={data.name} />
+            </div>
             <div className={styles.cardContent}>
-                <Header>
-                    <Title isPageTitle={false}>{data.name}</Title>
+                <header>
+                    <h1 className={`title ${styles.userName}`}>{data.name}</h1>
                     <p className={styles.description}>{data.place}</p>
-                </Header>
-                <Main className={styles.fixedContent}>
+                </header>
+                <main className={styles.fixedContent}>
                     <ul className={styles.tagsContainer}>
                         {visibleTags}
                         {hasMoreTags ? (
-                            <li className={styles.tags}>...</li>
+                            <li key={`more`} className={styles.tags}>...</li>
                         ) : ''}
                     </ul>
-                </Main>
+                </main>
             </div>
         </div>
     );

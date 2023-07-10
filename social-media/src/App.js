@@ -1,7 +1,7 @@
 import './App.css';
 
-import PageHeader from './components/PageHeader/PageHeader';
-import PageBody from './components/PageBody/PageBody';
+import PageHeader from './components/pageHeader/PageHeader';
+import PageBody from './components/pageBody/PageBody';
 /**
  * Main App Component
  * @returns Application

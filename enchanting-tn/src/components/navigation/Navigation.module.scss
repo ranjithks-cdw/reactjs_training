@@ -1,0 +1,17 @@
+.navigationMenu {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row nowrap;
+    gap: 3.25rem;
+    
+    list-style: none;
+    a {
+        text-decoration: none;
+        color: #7A1655;
+        font-size: 1rem;
+        font-weight: 500;
+        &:hover {
+            color: #265153
+        }
+    }
+}

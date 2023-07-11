@@ -1,0 +1,22 @@
+.navLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+    width: 45%;
+}
+
+.navLinks li {
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #5C6170;
+    list-style: none;
+    cursor: pointer;
+}
+
+.navLinks li:hover, .navLinks .active{
+    color: #FFF;
+    background-color: #849FFF;
+}

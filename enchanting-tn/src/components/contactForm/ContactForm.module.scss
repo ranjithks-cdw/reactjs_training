@@ -1,0 +1,27 @@
+.formContainer {
+    background-color: #F7F7F7;
+    padding-bottom: 50px;
+}
+.formContent {
+    width: 50%;
+    margin: 0 auto;
+    padding-left: 95px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 30px;
+}
+
+.inputLabel {
+    font-size: 1.35rem;
+}
+
+.inputBox {
+    padding: 20px 25px;
+    width: 650px;
+    height: 65px;
+    font-size: 1.1rem;
+}
+
+.submitBtn {
+    width: 13rem;
+}

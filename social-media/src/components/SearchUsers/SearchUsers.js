@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './SearchUsers.module.css';
-import Input from '../input/Input';
+import { pageConstants } from '../../constants/pageConstants';
 
 /**
  * @description Function to create search user input component
@@ -10,13 +10,11 @@ import Input from '../input/Input';
  * @author @ranjithks-cdw
  */
 const SearchUsers = () => {
-    const inputType = `text`;
-    const inputPlaceholder = `Search users`;
 
     return (
         <div className={styles.inputGroup}>
             <FontAwesomeIcon icon={faSearch} className={styles.icon}/>
-            <Input inputType={inputType} inputPlaceholder={inputPlaceholder} className={styles.inputBox}/>
+            <input type="text" placeholder={pageConstants.placeHolders.searchUser} className={styles.inputBox}/>
         </div>
     );
 };

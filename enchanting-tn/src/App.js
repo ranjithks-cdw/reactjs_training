@@ -1,9 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
 import AppHeader from './components/appHeader/AppHeader';
-import ContactForm from './components/contactForm/ContactForm';
 import HomePage from './pages/homePage/HomePage';
 import DetailsPage from './pages/detailsPage/DetailsPage';
+import ContactForm from './components/contactForm/ContactForm';
 
 const App = () => {
   return (
@@ -14,7 +13,7 @@ const App = () => {
         <Route path="/details/:place" element={<DetailsPage />} />
         <Route path='*' element={<Navigate to="/" replace/>} />
       </Routes>
-      <ContactForm />
+      <ContactForm message={false}/>
     </div>
   );
 };

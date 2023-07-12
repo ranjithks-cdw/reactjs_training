@@ -4,40 +4,92 @@ import Dropdown from '../dropdown/Dropdown';
 import InputGroup from '../inputGroup/InputGroup';
 import SectionHeader from '../sectionHeader/SectionHeader';
 import style from './ContactForm.module.scss';
-import axiosAPI from '../../services/places';
-
+import {axiosAPI} from '../../services/apiService';
+import {BUTTON, CONTACT_FORM} from '../../constants/pageConstants'
+/**
+ * @description Function to construct Form component
+ * @returns Form Component
+ * @author @ranjithks-cdw
+ */
 const ContactForm = () => {
-    const sectionTitle = `Contact Us`;
-    const sectionDescription = `Our Sales Team will reach out to you ASAP!`;
+    const sectionTitle = CONTACT_FORM.TITLE;
+    const sectionDescription = CONTACT_FORM.DESCRIPTION;
+
     const [placesName, setPlacesName] = useState([]);
+    const [formDetails, setFormDetails] = useState({
+        customerName: '',
+        contactNumber: '',
+        homeTown: '',
+        travelDestination: ''
+    });
+
+    const [successMessage, setSuccessMessage] = useState();
+
     useEffect(() => {
-        axiosAPI.get().then(response => {
+        axiosAPI.places.get().then(response => {
             const places = response.data;
             setPlacesName(places && places.map(place => place.city))
         });
     },[]);
+
+    const setName = event => {
+        setFormDetails({...formDetails, customerName: event.target.value});
+    };
+    const setContact = event => {
+        setFormDetails({...formDetails, contactNumber: event.target.value});
+    };
+    const homeTownSelection = place => {
+        setFormDetails({...formDetails, homeTown: place});
+    };
+    const destinationSelection = place => {
+        setFormDetails({...formDetails, travelDestination: place});
+    };
+    const recordInterest = event => {
+        event.preventDefault();
+        if(formDetails.customerName && formDetails.customerName.trim().length > 0 && formDetails.contactNumber && formDetails.contactNumber.trim().length === 10 && formDetails.homeTown && formDetails.travelDestination) {
+            const message = <p>Thank you <span>{formDetails.customerName}</span> for expressing your interest in travelling with us. Our Sales team will get back with the best packages from <span>{formDetails.homeTown}</span> to <span>{formDetails.travelDestination}</span>.</p>;
+            setSuccessMessage(message);
+            event.target.reset();
+            setTimeout(() => {
+                setSuccessMessage(false);
+            },5000);
+        }
+        setFormDetails({
+            customerName: '',
+            contactNumber: '',
+            homeTown: '',
+            travelDestination:''
+        });
+    };
+
     return (
         <div className={style.formContainer}>
-            <form className={style.formContent}>
-                <SectionHeader sectionTitle={sectionTitle} sectionDescription={sectionDescription} />
+            <form className={style.formContent} onSubmit={recordInterest}>
+                <SectionHeader sectionTitle={sectionTitle} sectionDescription={sectionDescription}/>
                 <InputGroup>
-                    <label className={style.inputLabel}>Name</label>
-                    <input type="text" className={style.inputBox} />
+                    <label className={style.inputLabel}>{CONTACT_FORM.LABELS.NAME}</label>
+                    <input type="text" className={style.inputBox} onChange={setName}/>
                 </InputGroup>
                 <InputGroup>
-                    <label className={style.inputLabel}>Your Home Town</label>
-                    <Dropdown options={placesName}/>
+                    <label className={style.inputLabel}>{CONTACT_FORM.LABELS.HOME_TOWN}</label>
+                    <Dropdown options={placesName} homeTownSelection={homeTownSelection}/>
                 </InputGroup>
                 <InputGroup>
-                    <label className={style.inputLabel}>Where would you like to go?</label>
-                    <Dropdown options={placesName}/>
+                    <label className={style.inputLabel}>{CONTACT_FORM.LABELS.DESTINATION}</label>
+                    <Dropdown options={placesName} destinationSelection={destinationSelection} />
                 </InputGroup>
                 <InputGroup>
-                    <label className={style.inputLabel}>Contact Number</label>
-                    <input type="tel" className={style.inputBox} />
+                    <label className={style.inputLabel}>{CONTACT_FORM.LABELS.CONTACT_NUMBER}</label>
+                    <input type="tel" className={style.inputBox} onChange={setContact}/>
                 </InputGroup>
-                <Button className={style.submitBtn}>Submit Interest</Button>
+                <Button className={style.submitBtn}>{BUTTON.SUBMIT_INTEREST}</Button>
             </form>
+            {
+                successMessage && 
+                <div className={style.messageContainer}>
+                    {successMessage}
+                </div>
+            }
         </div>
     );
 };

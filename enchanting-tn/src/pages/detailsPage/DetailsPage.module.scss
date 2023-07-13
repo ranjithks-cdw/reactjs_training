@@ -28,6 +28,7 @@
     .temperature {
         position: relative;
         font-size: 3.5rem;
+        font-weight: 400;
         margin: 350px 0 60px;
     }
 }
@@ -38,8 +39,12 @@
     row-gap: 50px;
     width: 88%;
     margin: 85px auto;
-    font-size: 1.9rem;
-    font-weight: 300;
+    font-size: 2.1rem;
+    font-weight: 400;
     text-align: justify;
     white-space: pre-line;
+
+    p {
+        margin-left: 90px;
+    }
 }

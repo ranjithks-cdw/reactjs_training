@@ -5,14 +5,20 @@
 .formContent {
     width: 50%;
     margin: 0 auto;
-    padding-left: 95px;
+    padding: 10px 0 0 95px;
     display: flex;
     flex-flow: column wrap;
     gap: 30px;
+
+    select {
+        border-color: #979797;
+    }
 }
 
 .inputLabel {
-    font-size: 1.35rem;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+    font-weight: 400;
 }
 
 .inputBox {

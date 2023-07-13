@@ -3,7 +3,8 @@ export const PAGE_AND_CARD = {
     BANNER_MESSAGE: 'Your Adventure Travel Expert in the SOUTH',
     DESTINATION: "Destinations",
     DESTINATION_MESSAGE: "Just for you. Because you and your bike are special to us!",
-    SIMILAR_DESTINATION: "Similar Destination"
+    SIMILAR_DESTINATION: "Similar Destination",
+    SIMILAR_DESTINATION_MESSAGE: "Because you like"
 };
 
 export const NAVIGATION = [

@@ -16,6 +16,7 @@ const DetailsPage = () => {
     const imageURL = require(`../../assets/${placeName}.png`);
     const [placeData, setPlacesData] = useState({});
     const [temperature, setTemperature] = useState('-');
+    const sectionDescription = `${PAGE_AND_CARD.SIMILAR_DESTINATION_MESSAGE} ${placeName}`;
     
     useEffect(() => {
         axiosAPI.places.get(`/places/${placeName}`).then((response) => setPlacesData(response.data))
@@ -43,7 +44,7 @@ const DetailsPage = () => {
                 <div className={style.detailsContainer}>
                     {placeDescription && placeDescription}
                 </div>
-                <Destination isDetailsPage={true} relatedPlaces={placeData.relatedPlaces} sectionTitle={PAGE_AND_CARD.SIMILAR_DESTINATION} sectionDescription={PAGE_AND_CARD.DESTINATION_MESSAGE}/>
+                <Destination isDetailsPage={true} relatedPlaces={placeData.relatedPlaces} sectionTitle={PAGE_AND_CARD.SIMILAR_DESTINATION} sectionDescription={sectionDescription}/>
             </main>
         </>
     );

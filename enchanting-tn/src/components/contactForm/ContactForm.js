@@ -5,7 +5,8 @@ import InputGroup from '../inputGroup/InputGroup';
 import SectionHeader from '../sectionHeader/SectionHeader';
 import style from './ContactForm.module.scss';
 import {axiosAPI} from '../../services/apiService';
-import {BUTTON, CONTACT_FORM} from '../../constants/pageConstants'
+import {BUTTON, CONTACT_FORM} from '../../constants/pageConstants';
+import {validateForm} from '../../utils/formValidation';
 /**
  * @description Function to construct Form component
  * @returns Form Component
@@ -46,14 +47,13 @@ const ContactForm = () => {
     };
     const recordInterest = event => {
         event.preventDefault();
-        if(formDetails.customerName && formDetails.customerName.trim().length > 0 && formDetails.contactNumber && formDetails.contactNumber.trim().length === 10 && formDetails.homeTown && formDetails.travelDestination) {
-            const message = <p>Thank you <span>{formDetails.customerName}</span> for expressing your interest in travelling with us. Our Sales team will get back with the best packages from <span>{formDetails.homeTown}</span> to <span>{formDetails.travelDestination}</span>.</p>;
-            setSuccessMessage(message);
-            event.target.reset();
-            setTimeout(() => {
-                setSuccessMessage(false);
-            },5000);
-        }
+        const message = validateForm(formDetails);
+        setSuccessMessage(message);
+        event.target.reset();
+        setTimeout(()=> {
+            setSuccessMessage(false);
+        },5000);
+
         setFormDetails({
             customerName: '',
             contactNumber: '',

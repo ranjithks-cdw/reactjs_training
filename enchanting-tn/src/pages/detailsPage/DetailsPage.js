@@ -41,7 +41,7 @@ const DetailsPage = () => {
                 <div className={style.bannerContent}>
                     <h6>{placeData && placeData.city}</h6>
                     <p className={style.description}>{placeData && placeData.place}</p>
-                    <p className={style.temperature}>{temperature && temperature}°C</p>
+                    <p className={style.temperature}>{temperature && temperature}<sup>°</sup>C</p>
                 </div>
                 <Image src={`/images/${placeName}.png`} alt={placeName} className='bannerImage' />
             </section>

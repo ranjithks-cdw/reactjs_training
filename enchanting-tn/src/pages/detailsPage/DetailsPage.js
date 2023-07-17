@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Image from '../../components/image/Image';
 import Destination from '../../components/destination/Destination';
@@ -12,8 +12,8 @@ import {PAGE_AND_CARD} from '../../constants/pageConstants';
  * @author @ranjithks-cdw
  */
 const DetailsPage = () => {
+    let navigate = useNavigate();
     const placeName = useParams().place;
-    const imageURL = require(`../../assets/${placeName}.png`);
     const [placeData, setPlacesData] = useState({});
     const [temperature, setTemperature] = useState('-');
     const sectionDescription = `${PAGE_AND_CARD.SIMILAR_DESTINATION_MESSAGE} ${placeName}`;
@@ -25,7 +25,12 @@ const DetailsPage = () => {
         .catch(error => console.log(error));
     },[placeName]);
 
-    const placeDescription = placeData.fullDescription && placeData.fullDescription.split("\\n")
+    useEffect(() => {
+        if(placeData.length <=0)
+            navigate('/');
+    });
+
+    const placeDescription = placeData?.fullDescription?.split("\\n")
                                 .map((content, idx)=> {
                                 return <p key={idx}>{content}</p>
                             });
@@ -38,11 +43,11 @@ const DetailsPage = () => {
                     <p className={style.description}>{placeData && placeData.place}</p>
                     <p className={style.temperature}>{temperature && temperature}°C</p>
                 </div>
-                <Image src={imageURL} alt={placeName} className='bannerImage' />
+                <Image src={`/images/${placeName}.png`} alt={placeName} className='bannerImage' />
             </section>
             <main>
                 <div className={style.detailsContainer}>
-                    {placeDescription && placeDescription}
+                    {placeDescription}
                 </div>
                 <Destination isDetailsPage={true} relatedPlaces={placeData.relatedPlaces} sectionTitle={PAGE_AND_CARD.SIMILAR_DESTINATION} sectionDescription={sectionDescription}/>
             </main>

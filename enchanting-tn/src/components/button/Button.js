@@ -5,9 +5,13 @@ import style from './Button.module.scss';
  * @returns Button Component
  * @author @ranjithks-cdw
  */
-const Button = ({className, onClick, children}) => {
+const Button = ({type, className, btnClickHandler, children}) => {
+    const handleButton = event => {
+        btnClickHandler(event);
+    }
+    
     return (
-        <button onClick={onClick} className={`${style.btn} ${className}`}>{children}</button>
+        <button type={type} onClick={handleButton} className={`${style.btn} ${className}`}>{children}</button>
     );
 };
 
@@ -15,6 +19,11 @@ Button.propTypes = {
     className: PropTypes.string,
     onClick: PropTypes.func,
     children: PropTypes.string.isRequired
+};
+
+Button.defaultProps = {
+    type: 'button',
+    btnClickHandler:(event) => {}
 };
 
 export default Button;

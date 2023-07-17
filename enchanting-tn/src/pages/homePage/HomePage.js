@@ -21,19 +21,15 @@ const HomePage = () => {
         .catch(error => console.log(error));
     },[]);
     const placesName = placesData && placesData.map(place => place.city);
-    const imageURL = require(`../../assets/bike.png`);
-    const alt = "banner image";
 
     const bannerMessage = <p>Your Adventure Travel Expert in the <span>SOUTH</span></p>;
 
     const [selectedPlace, setSelectedPlace] = useState('');
-    const dropdownPlace = place => {
-        setSelectedPlace(place);
+    const dropdownPlace = (event) => {
+        setSelectedPlace(event.target.value.toLowerCase());
     };
-    const navigateToPlace = () => {
-        if(selectedPlace) {
-            return navigate(`/details/${selectedPlace}`);
-        }
+    const navigateToPlace = (event) => {
+        selectedPlace ? navigate(`/details/${selectedPlace}`) : navigate('/');
     };
     return (
         <>
@@ -42,11 +38,11 @@ const HomePage = () => {
                     <h6>{PAGE_AND_CARD.WELCOME_MESSAGE}</h6>
                     {bannerMessage}
                     <div className="selectionMenu">
-                        <Dropdown options={placesName} dropdownPlace={dropdownPlace}/>
-                        <Button className={style.exploreBtn} onClick={navigateToPlace}>{BUTTON.EXPLORE}</Button>
+                        <Dropdown options={placesName} setDropdown={dropdownPlace}/>
+                        <Button className={style.exploreBtn} btnClickHandler={navigateToPlace}>{BUTTON.EXPLORE}</Button>
                     </div>
                 </div>
-                <Image src={imageURL} alt={alt} className="bannerImage" />
+                <Image src={`images/bike.png`} alt={`banner image`} className="bannerImage" />
             </section>
             <main>
                 <Destination isDetailsPage={false} placesData={placesData} sectionTitle={PAGE_AND_CARD.DESTINATION} sectionDescription={PAGE_AND_CARD.DESTINATION_MESSAGE}/>

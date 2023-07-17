@@ -13,9 +13,6 @@ import {validateForm} from '../../utils/formValidation';
  * @author @ranjithks-cdw
  */
 const ContactForm = () => {
-    const sectionTitle = CONTACT_FORM.TITLE;
-    const sectionDescription = CONTACT_FORM.DESCRIPTION;
-
     const [placesName, setPlacesName] = useState([]);
     const [formDetails, setFormDetails] = useState({
         customerName: '',
@@ -39,17 +36,16 @@ const ContactForm = () => {
     const setContact = event => {
         setFormDetails({...formDetails, contactNumber: event.target.value});
     };
-    const homeTownSelection = place => {
-        setFormDetails({...formDetails, homeTown: place});
+    const homeTownSelection = event => {
+        setFormDetails({...formDetails, homeTown: event.target.value});
     };
-    const destinationSelection = place => {
-        setFormDetails({...formDetails, travelDestination: place});
+    const destinationSelection = event => {
+        setFormDetails({...formDetails, travelDestination: event.target.value});
     };
     const recordInterest = event => {
         event.preventDefault();
         const message = validateForm(formDetails);
         setSuccessMessage(message);
-        event.target.reset();
         setTimeout(()=> {
             setSuccessMessage(false);
         },5000);
@@ -60,29 +56,30 @@ const ContactForm = () => {
             homeTown: '',
             travelDestination:''
         });
+        event.target.reset();
     };
 
     return (
         <div className={style.formContainer}>
             <form className={style.formContent} onSubmit={recordInterest}>
-                <SectionHeader sectionTitle={sectionTitle} sectionDescription={sectionDescription}/>
+                <SectionHeader sectionTitle={CONTACT_FORM.TITLE} sectionDescription={CONTACT_FORM.DESCRIPTION}/>
                 <InputGroup>
                     <label className={style.inputLabel}>{CONTACT_FORM.LABELS.NAME}</label>
                     <input type="text" className={style.inputBox} onChange={setName}/>
                 </InputGroup>
                 <InputGroup>
                     <label className={style.inputLabel}>{CONTACT_FORM.LABELS.HOME_TOWN}</label>
-                    <Dropdown options={placesName} homeTownSelection={homeTownSelection}/>
+                    <Dropdown options={placesName} setDropdown={homeTownSelection}/>
                 </InputGroup>
                 <InputGroup>
                     <label className={style.inputLabel}>{CONTACT_FORM.LABELS.DESTINATION}</label>
-                    <Dropdown options={placesName} destinationSelection={destinationSelection} />
+                    <Dropdown options={placesName} setDropdown={destinationSelection} />
                 </InputGroup>
                 <InputGroup>
                     <label className={style.inputLabel}>{CONTACT_FORM.LABELS.CONTACT_NUMBER}</label>
                     <input type="tel" className={style.inputBox} onChange={setContact}/>
                 </InputGroup>
-                <Button className={style.submitBtn}>{BUTTON.SUBMIT_INTEREST}</Button>
+                <Button type={BUTTON.TYPE} className={style.submitBtn}>{BUTTON.SUBMIT_INTEREST}</Button>
             </form>
             {
                 successMessage && 

@@ -8,11 +8,10 @@ import styles from './AppHeader.module.scss';
  * @author @ranjithks-cdw
  */
 const AppHeader = () => {
-    const logoURL = require(`../../assets/logo.png`);
     return (
         <header className={styles.appHeader}>
             <Link to="/">
-                <Image className="logo" src={logoURL} alt={`logo`}/>
+                <Image className="logo" src={`/images/logo.png`} alt={`logo`}/>
             </Link>
             <Navigation />
         </header>

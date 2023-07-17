@@ -25,4 +25,5 @@ export const BUTTON = {
     EXPLORE : 'EXPLORE',
     READ_MORE: 'READ MORE',
     SUBMIT_INTEREST: 'SUBMIT INTEREST',
+    TYPE : `submit`
 };

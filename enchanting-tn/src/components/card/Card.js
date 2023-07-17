@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import Button from '../button/Button';
 import Image from '../image/Image';
 import style from './Card.module.scss';
@@ -10,17 +10,18 @@ import {BUTTON} from '../../constants/pageConstants';
  * @author @ranjithks-cdw
 */
 const Card = ({data}) => {
-    const imageURL = data && data.city && require(`../../assets/${data.city}.png`);
+    const navigate = useNavigate();
+    const navigateToPlace = (event) => {
+        navigate(`/details/${data.city}`);
+    }
     return (
         <div className={style.card}>
-            <Image src={imageURL} className="cardImage" alt={data.city} />
+            <Image src={`/images/${data.city}.png`} className="cardImage" alt={data.city} />
             <div className={style.cardContent}>
                 <h3>{data.place}</h3>
                 <h5>{data.city}</h5>
                 <p>{data.shortDescription}</p>
-                <Link to={`/details/${data.city}`}>
-                    <Button className={style.readMoreBtn}>{BUTTON.READ_MORE}</Button>
-                </Link>
+                <Button className={style.readMoreBtn} btnClickHandler={navigateToPlace}>{BUTTON.READ_MORE}</Button>
             </div>
         </div>
     );

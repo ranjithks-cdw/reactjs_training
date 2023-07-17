@@ -1,0 +1,16 @@
+.btn {
+    width: 9rem;
+    padding: 12px 20PX;
+    border: none;
+    font-family: 'Roboto', sans;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #FFF;
+    background-color: #791655;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #265153;
+    }
+}

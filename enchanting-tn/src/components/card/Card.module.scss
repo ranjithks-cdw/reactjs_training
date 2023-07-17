@@ -1,0 +1,29 @@
+.card {
+    width: calc((100% - 60px)/3);
+}
+
+.cardContent {
+    h3 {
+        padding: 10px 0;
+        font-size: 2rem;
+        font-weight: 300;
+    }
+    h5 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+    p {
+        font-size: 20px;
+        font-weight: 300;
+        padding: 23px 0;
+        height: 235px;
+        white-space: pre-wrap;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 8;
+    }
+    button {
+        margin-top: 20px;
+    }
+}

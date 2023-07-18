@@ -1,0 +1,17 @@
+.navMenu {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row nowrap;
+    gap: 4.35rem;
+    
+    list-style: none;
+    a {
+        text-decoration: none;
+        color: #000;
+        font-size: 0.95rem;
+        font-weight: 500;
+        &:hover {
+            color: #265153
+        }
+    }
+}

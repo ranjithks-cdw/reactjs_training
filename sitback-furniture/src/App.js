@@ -8,7 +8,8 @@ const App = () => {
       <AppHeader />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path='*' element={<Navigate to="/" replace/>} />
+        {/* <Route path='*' element={<Navigate to="/" replace/>} /> */}
+        <Route path="*" element={<p>Path not resolved</p>} />
       </Routes>
     </div>
   );

@@ -6,12 +6,12 @@
     
     list-style: none;
     a {
-        text-decoration: none;
-        color: #000;
+        padding-bottom: 15px;
         font-size: 0.95rem;
         font-weight: 500;
-        &:hover {
-            color: #265153
+        color: #000;
+        &:hover, &.active {
+            border-bottom: 10px solid #000;
         }
     }
 }

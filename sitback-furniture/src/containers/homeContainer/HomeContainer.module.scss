@@ -1,0 +1,21 @@
+.homeContainer {
+    width: 82%;
+    margin: 50px auto;
+    
+    .title {
+        font-size: 2.8rem;
+        font-weight: 400;
+    }
+
+    .description {
+        font-size: 1.75rem;
+        font-weight: 400;
+    }
+}
+
+.cardsContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    margin-top: 30px;
+}

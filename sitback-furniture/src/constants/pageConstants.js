@@ -2,15 +2,15 @@ export const HEADER = {
     LOGO: 'SITBACK',
     NAVLINKS: [
         {
-            URL: '/couches',
+            URL: '/categories/couches',
             NAME: 'COUCHES'
         },
         {
-            URL: '/chairs',
+            URL: '/categories/chairs',
             NAME: 'CHAIRS'
         },
         {
-            URL: '/dining',
+            URL: '/categories/dining',
             NAME: 'DINING'
         }
     ],
@@ -20,6 +20,10 @@ export const HEADER = {
 export const HOME_PAGE = {
     TITLE: 'Your Home, With Love',
     DESCRIPTION: 'Come, Choose from millions of products'
+};
+
+export const BUTTON = {
+    SHOP_NOW: 'SHOP NOW'
 }
 
 export const FOOTER = "COPYRIGHTS 2020";

@@ -1,10 +1,12 @@
+import styles from './Button.module.scss';
+
 const Button = ({className, btnClickHandler, children}) => {
     const handleClick = () => {
         btnClickHandler();
     };
 
     return (
-        <button className={className} onClick={handleClick}>{children}</button>
+        <button className={styles[className]} onClick={handleClick}>{children}</button>
     );
 };
 

@@ -6,7 +6,7 @@ const Button = ({className, btnClickHandler, children}) => {
     };
 
     return (
-        <button className={styles[className]} onClick={handleClick}>{children}</button>
+        <button className={`${styles.btn} ${styles[className]}`} onClick={handleClick}>{children}</button>
     );
 };
 

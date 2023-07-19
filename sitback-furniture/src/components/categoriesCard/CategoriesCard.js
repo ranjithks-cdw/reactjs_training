@@ -1,9 +1,9 @@
 import {useNavigate} from 'react-router-dom';
 import Button from '../button/Button';
 import Image from '../image/Image';
-import styles from './CategoryCards.module.scss';
+import styles from './CategoriesCard.module.scss';
 import { BUTTON } from '../../constants/pageConstants';
-const CategoryCards = ({data}) => {
+const CategoriesCard = ({data}) => {
     const navigate = useNavigate();
     const navigateToCategory = (event) => {
         navigate(`/categories/${data.id}`);
@@ -18,4 +18,4 @@ const CategoryCards = ({data}) => {
     );
 };
 
-export default CategoryCards;
+export default CategoriesCard;

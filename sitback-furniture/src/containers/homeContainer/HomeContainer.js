@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import styles from './HomeContainer.module.scss';
-import CategoryCards from '../../components/categoryCards/CategoryCards';
+import CategoriesCard from '../../components/categoriesCard/CategoriesCard';
 import { HOME_PAGE } from '../../constants/pageConstants';
 import {axiosAPI} from '../../services/apiService';
 
@@ -12,16 +12,16 @@ const HomeContainer = () => {
         .catch(error => console.log(error))
     },[]);
 
-    const cards = categoryData?.map(category => <CategoryCards key={category.id} data={category} />);
+    const cards = categoryData?.map(category => <CategoriesCard key={category.id} data={category} />);
 
     return (
-        <div className={styles.homeContainer}>
+        <main className={styles.homeContainer}>
             <h2 className={styles.title}>{HOME_PAGE.TITLE}</h2>
             <h5 className={styles.description}>{HOME_PAGE.DESCRIPTION}</h5>
             <div className={styles.cardsContainer}>
                 {cards}
             </div>
-        </div>
+        </main>
     );
 };
 

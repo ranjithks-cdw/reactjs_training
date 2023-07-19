@@ -23,7 +23,9 @@ export const HOME_PAGE = {
 };
 
 export const BUTTON = {
-    SHOP_NOW: 'SHOP NOW'
+    SHOP_NOW: 'SHOP NOW',
+    WISHLIST: 'ADD TO WISHLIST',
+    CART: 'ADD TO CART',
 }
 
 export const FOOTER = "COPYRIGHTS 2020";

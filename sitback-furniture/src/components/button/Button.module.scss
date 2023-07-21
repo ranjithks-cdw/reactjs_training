@@ -15,6 +15,21 @@
     background-color: #FFF;
 }
 
-.cartButton {
+.cartButton, .orderButton {
     padding: 10px 20px;
+}
+
+.incrementButton, .decrementButton {
+    font-size: 14px;
+    color: #000;
+    background-color: #FFF;
+    cursor: pointer;
+}
+
+.cartContentButton {
+    position: absolute;
+    bottom: -12px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 0.65rem;
 }

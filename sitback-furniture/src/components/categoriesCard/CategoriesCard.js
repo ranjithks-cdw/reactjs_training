@@ -1,11 +1,19 @@
+import PropTypes from 'prop-types';
 import {useNavigate} from 'react-router-dom';
 import Button from '../button/Button';
 import Image from '../image/Image';
 import styles from './CategoriesCard.module.scss';
 import { BUTTON } from '../../constants/pageConstants';
+/**
+ * @description Function to create Card component for Categories
+ * @returns CategoriesCard Component
+ * @author @ranjithks-cdw
+ */
 const CategoriesCard = ({data}) => {
     const navigate = useNavigate();
-    const navigateToCategory = (event) => {
+
+    // Method to handle navigation to a specific category
+    const navigateToCategory = () => {
         navigate(`/categories/${data.id}`);
     }
     return (
@@ -16,6 +24,10 @@ const CategoriesCard = ({data}) => {
             <Button className="shopNow" btnClickHandler={navigateToCategory}>{BUTTON.SHOP_NOW}</Button>
         </div>
     );
+};
+
+CategoriesCard.propTypes = {
+    data: PropTypes.object.isRequired,
 };
 
 export default CategoriesCard;

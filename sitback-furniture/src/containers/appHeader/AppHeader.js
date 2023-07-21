@@ -3,7 +3,11 @@ import {FaCaretDown} from 'react-icons/fa';
 import styles from './AppHeader.module.scss';
 import { HEADER } from '../../constants/pageConstants';
 import Navigation from '../../components/navigation/Navigation';
-
+/**
+ * @description Method to consturct Header container
+ * @returns Header container
+ * @ranjithks-cdw
+ */
 const AppHeader = () => {
     return (
         <header className={styles.appHeader}>

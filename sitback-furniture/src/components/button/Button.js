@@ -1,6 +1,13 @@
+import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
-
+/**
+ * @description Function to construct button component
+ * @returns Button Component
+ * @author @ranjithks-cdw
+ */
 const Button = ({className, btnClickHandler, children}) => {
+    
+    //Method to handle click event
     const handleClick = () => {
         btnClickHandler();
     };
@@ -8,6 +15,12 @@ const Button = ({className, btnClickHandler, children}) => {
     return (
         <button className={`${styles.btn} ${styles[className]}`} onClick={handleClick}>{children}</button>
     );
+};
+
+Button.propTypes = {
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+    children: PropTypes.string.isRequired
 };
 
 export default Button;

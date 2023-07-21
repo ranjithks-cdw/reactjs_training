@@ -12,3 +12,14 @@
 .icon {
     height: 2px;
 }
+
+.cartImage {
+    position: absolute;
+    top: 10px;
+    left: -15px;
+    height: 80px;
+    width: 120px;
+    img {
+        border-radius: 10px;
+    }
+}

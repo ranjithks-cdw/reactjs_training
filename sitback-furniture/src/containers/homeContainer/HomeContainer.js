@@ -15,7 +15,7 @@ const HomeContainer = () => {
     useEffect(() => {
         axiosAPI.get('/categories')
         .then(response => setCategoyData(response.data))
-        .catch(error => console.log(error))
+        .catch(error => error)
     },[]);
 
     useEffect(() => {

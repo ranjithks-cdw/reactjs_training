@@ -6,7 +6,6 @@ import OrdersPage from './screens/ordersPage/OrdersPage';
 import NotFoundPage from './screens/notFoundPage/NotFoundPage';
 
 const App = () => {
-  localStorage.setItem('orders', JSON.stringify([]));
   return (
     <div className="App">
       <AppHeader />

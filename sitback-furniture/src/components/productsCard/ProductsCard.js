@@ -59,4 +59,8 @@ ProductsCard.propTypes = {
     cartManager: PropTypes.func
 };
 
+ProductsCard.defaultProps = {
+    isProductsPage: false,
+};
+
 export default ProductsCard;

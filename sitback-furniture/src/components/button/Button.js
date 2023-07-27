@@ -24,4 +24,9 @@ Button.propTypes = {
     children: PropTypes.string.isRequired
 };
 
+Button.defaultProps = {
+    children: 'Button',
+    handleClick: (event) => {}
+};
+
 export default Button;

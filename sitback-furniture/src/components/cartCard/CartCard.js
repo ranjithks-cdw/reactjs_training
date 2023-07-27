@@ -53,8 +53,12 @@ const CartCard = (props) => {
 CartCard.propTypes = {
     product: PropTypes.object.isRequired,
     isCart: PropTypes.bool.isRequired,
-    cartManager: PropTypes.func,
-    quantityManager: PropTypes.func
+    cartManager: PropTypes.func.isRequired,
+    quantityManager: PropTypes.func.isRequired
+};
+
+CartCard.defaultProps = {
+    isCart: false,
 };
 
 export default CartCard;

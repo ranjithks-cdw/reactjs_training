@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CartContainer from "../../containers/cartContainer/CartContainer";
 import ProductsContainer from "../../containers/productsContainer/ProductsContainer"
 import styles from './ProductsPage.module.scss';
+import { addToCart, addToWishlist } from "../../utils/ShoppingPageUtils";
 /**
  * @description Method to construct ProductsPage component
  * @returns Products Page
@@ -28,12 +29,10 @@ const ProductsPage = () => {
     },[activeTab]);
     
     useEffect(() => {
-        console.log('hi', wishlist);
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
     },[wishlist]);
 
     useEffect(() => {
-        console.log('ca', cart);
         localStorage.setItem('cart', JSON.stringify(cart));
     },[cart]);
 
@@ -41,26 +40,14 @@ const ProductsPage = () => {
         cart.length > 0 || wishlist.length > 0 ? setShowCart(true) : setShowCart(false);
     },[wishlist, cart]);
 
-    const addToWishList = product => {
-        const wishlistItems = JSON.parse(localStorage.getItem('wishlist'));
-        let tempList = wishlistItems.filter(item => item.id !== product.id);
-        tempList = [product, ...tempList];
+    const manageWishlist = product => {
+        const tempList = addToWishlist(product);
         setWishlist(tempList);
         toggleTab('wishlist');
     };
 
-    const addToCart = (product) => {
-        const cartItems = JSON.parse(localStorage.getItem('cart'));
-        let cartProduct = cartItems.find(item => item.id === product.id);
-        if(cartProduct) {
-            cartProduct.quantity = cartProduct.quantity + 1;
-        }
-        else {
-            cartProduct = {...product};
-            cartProduct.quantity = 1;
-        }
-        let tempCart = cartItems.filter(item => item.id !== cartProduct.id);
-        tempCart = [cartProduct, ...tempCart];
+    const manageCart = (product) => {
+        const tempCart = addToCart(product, 1);
         setCart(tempCart);
         toggleTab('cart');
     };
@@ -73,7 +60,7 @@ const ProductsPage = () => {
     
     return (
         <div className={styles.shoppingPageContainer}>
-            <ProductsContainer showCart={showCart} wishListManager={addToWishList} cartManager={addToCart} />
+            <ProductsContainer showCart={showCart} wishListManager={manageWishlist} cartManager={manageCart} />
             {showCart && <CartContainer cartData={cart} wishlistData={wishlist}  activeTab={activeTab} setCartVisbility={setCartVisbility}/>}
         </div>
     );

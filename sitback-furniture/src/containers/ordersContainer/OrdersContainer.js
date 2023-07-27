@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ORDERS_PAGE } from '../../constants/pageConstants';
 import styles from './OrdersContainer.module.scss';
 import ProductsCard from '../../components/productsCard/ProductsCard';
@@ -8,6 +9,12 @@ import ProductsCard from '../../components/productsCard/ProductsCard';
  */
 const OrdersContainer = () => {
     const products = JSON.parse(localStorage.getItem('orders'));
+
+    useEffect(() => {
+        return () => {
+            localStorage.setItem('orders', JSON.stringify([]));
+        }
+    },[]);
 
     const cards = products?.length > 0 ? products.map(product => <ProductsCard key={product.id} product={product} isProductsPage={false}/>) : <p>{ORDERS_PAGE.NO_ITEMS}</p>;
 

@@ -1,5 +1,6 @@
 .cartContainer {
     width: 34.7%;
+    height: 90vh;
     background-color: #F7F7F7;
 }
 
@@ -27,7 +28,7 @@
 
 .cartContentWrapper {
     height: 80vh;
-    margin: 30px 0 50px;
+    margin: 30px 0 0;
     padding-bottom: 100px;
     overflow-y: auto;
     &::-webkit-scrollbar {
@@ -39,7 +40,7 @@
     display: flex;
     column-gap: 120px;
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     padding: 30px 32px 30px 50px;
     margin-left: -40px;
     background-color: #FFF;

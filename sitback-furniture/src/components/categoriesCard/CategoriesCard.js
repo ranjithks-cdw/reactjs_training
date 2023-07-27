@@ -30,4 +30,8 @@ CategoriesCard.propTypes = {
     data: PropTypes.object.isRequired,
 };
 
+CategoriesCard.defaultProps = {
+    data: {}
+};
+
 export default CategoriesCard;

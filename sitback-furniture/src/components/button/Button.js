@@ -5,7 +5,8 @@ import styles from './Button.module.scss';
  * @returns Button Component
  * @author @ranjithks-cdw
  */
-const Button = ({className, btnClickHandler, children}) => {
+const Button = (props) => {
+    const {className, btnClickHandler, children} = props;
     
     //Method to handle click event
     const handleClick = () => {

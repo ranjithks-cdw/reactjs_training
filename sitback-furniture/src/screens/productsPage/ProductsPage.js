@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import CartContainer from "../../containers/cartContainer/CartContainer";
 import ProductsContainer from "../../containers/productsContainer/ProductsContainer"
 import styles from './ProductsPage.module.scss';
-import { useNavigate } from "react-router-dom";
 /**
  * @description Method to construct ProductsPage component
  * @returns Products Page
  * @ranjithks-cdw
  */
 const ProductsPage = () => {
-    const navigate = useNavigate();
     const [showCart, setShowCart] = useState(false);
     const [wishlist, setWishlist] = useState(() => {
         const storedList = localStorage.getItem('wishlist');
@@ -19,12 +17,23 @@ const ProductsPage = () => {
         const storedCart = localStorage.getItem('cart');
         return JSON.parse(storedCart) ?? [];
     });
+    const [activeTab, setActiveTab] = useState('cart');
+
+    const toggleTab = tab => {
+        setActiveTab(tab);
+    };
+
+    useEffect(() => {
+
+    },[activeTab]);
     
     useEffect(() => {
+        console.log('hi', wishlist);
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
     },[wishlist]);
 
     useEffect(() => {
+        console.log('ca', cart);
         localStorage.setItem('cart', JSON.stringify(cart));
     },[cart]);
 
@@ -33,15 +42,16 @@ const ProductsPage = () => {
     },[wishlist, cart]);
 
     const addToWishList = product => {
-        let tempList = wishlist.filter(item => item.id !== product.id);
+        const wishlistItems = JSON.parse(localStorage.getItem('wishlist'));
+        let tempList = wishlistItems.filter(item => item.id !== product.id);
         tempList = [product, ...tempList];
-        const index = cart.findIndex(item => item.id === product.id);
-        if(index < 0)
-            setWishlist(tempList);
+        setWishlist(tempList);
+        toggleTab('wishlist');
     };
 
-    const addToCart = product => {
-        let cartProduct = cart.find(item => item.id === product.id);
+    const addToCart = (product) => {
+        const cartItems = JSON.parse(localStorage.getItem('cart'));
+        let cartProduct = cartItems.find(item => item.id === product.id);
         if(cartProduct) {
             cartProduct.quantity = cartProduct.quantity + 1;
         }
@@ -49,33 +59,22 @@ const ProductsPage = () => {
             cartProduct = {...product};
             cartProduct.quantity = 1;
         }
-        let tempCart = cart.filter(item => item.id !== cartProduct.id);
-        tempCart = [...tempCart, cartProduct];
-        let tempList = wishlist.filter(item => item.id !== product.id);
-        if(wishlist.length > tempList.length) {
-            setWishlist(tempList);
-        }
+        let tempCart = cartItems.filter(item => item.id !== cartProduct.id);
+        tempCart = [cartProduct, ...tempCart];
         setCart(tempCart);
+        toggleTab('cart');
     };
-    const addToOrders = () => {
-        localStorage.setItem('orders', JSON.stringify(cart));
-        setCart([]);
-        localStorage.setItem('cart', JSON.stringify([]));
-        navigate('/confirmOrder');
-    };
-    const modifyQuantity = (quantity, product) => {
-        let tempCart = [...cart];
-        const index = tempCart.findIndex(item => item.id === product.id);
-        const prevQuantity = tempCart[index].quantity;
-        tempCart[index].quantity = prevQuantity + quantity;
-        if(tempCart[index].quantity === 0)
-            tempCart = tempCart.filter(item => item.id !== product.id);
-        setCart(tempCart);
-    };
+
+    const setCartVisbility = () => {
+        setShowCart(false);
+        setCart(JSON.parse(localStorage.getItem('cart')));
+        setWishlist(JSON.parse(localStorage.getItem('wishlist')));
+    }
+    
     return (
         <div className={styles.shoppingPageContainer}>
             <ProductsContainer showCart={showCart} wishListManager={addToWishList} cartManager={addToCart} />
-            {showCart && <CartContainer cartData={cart} wishlistData={wishlist} cartManager={addToCart} ordersManager={addToOrders} quantityManager={modifyQuantity}/>}
+            {showCart && <CartContainer cartData={cart} wishlistData={wishlist}  activeTab={activeTab} setCartVisbility={setCartVisbility}/>}
         </div>
     );
 };

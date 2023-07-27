@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
 import styles from './Image.module.scss';
+import { BROKEN_IMAGE_URL } from '../../constants/pageConstants';
 /**
  * @description Function to create Image component
  * @returns Image component
  * @author @ranjithks-cdw
  */
-const Image = ({src, alt, className}) => {
+const Image = (props) => {
+    const {src, alt, className} = props;
+    const handleBrokenImage = error => {
+        error.target.src = BROKEN_IMAGE_URL;
+    };
     return (
         <div className={styles[className]}>
-            <img src={src} alt={alt} />
+            <img src={src} alt={alt} onError={handleBrokenImage}/>
         </div>
     );
 };

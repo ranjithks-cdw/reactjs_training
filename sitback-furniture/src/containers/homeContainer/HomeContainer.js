@@ -3,35 +3,41 @@ import {ClipLoader} from 'react-spinners';
 import styles from './HomeContainer.module.scss';
 import CategoriesCard from '../../components/categoriesCard/CategoriesCard';
 import { HOME_PAGE } from '../../constants/pageConstants';
-import {axiosAPI} from '../../services/apiService';
+import {retrieveCategoryData} from '../../services/apiService';
 /**
  * @description Method to construct Home Container
  * @returns Home Container
  * @ranjithks-cdw
  */
 const HomeContainer = () => {
-    const [categoryData, setCategoyData] = useState([]);
-    const [load, setLoad] = useState(true);
-    useEffect(() => {
-        axiosAPI.get('/categories')
-        .then(response => setCategoyData(response.data))
-        .catch(error => error)
-    },[]);
-
+    const [categoryData, setCategoyData] = useState(() => {
+        const data = localStorage.getItem('categoryData');
+        return JSON.parse(data) ?? [];
+    });
+    const [load, setLoad] = useState(categoryData.length <= 0);
     useEffect(() => {
         setTimeout(() => {
-            setLoad(false);
-        },1000);
-    },[]);
+            if(categoryData.length <= 0) {
+                retrieveCategoryData().then(data => {
+                    if(data.length !== categoryData.length) {
+                        setCategoyData(data);
+                        localStorage.setItem('categoryData', JSON.stringify(data));
+                    }
+                })
+                .catch(error => error);
+            }
+            setLoad(categoryData.length <= 0);
+        }, 1000)
+    },[categoryData]);
 
-    const cards = categoryData?.map(category => <CategoriesCard key={category.id} data={category} />);
+    const cards = categoryData && categoryData.map(category => <CategoriesCard key={category.id} data={category} />);
 
     return (
         <main className={styles.homeContainer}>
             <h2 className={styles.title}>{HOME_PAGE.TITLE}</h2>
             <h5 className={styles.description}>{HOME_PAGE.DESCRIPTION}</h5>
             <div className={styles.cardsContainer}>
-            {load ? <ClipLoader className={styles.loader} /> : cards}
+                {load ? <div className={styles.loaderContainer}><ClipLoader className={styles.loader} /></div> : cards }
             </div>
         </main>
     );

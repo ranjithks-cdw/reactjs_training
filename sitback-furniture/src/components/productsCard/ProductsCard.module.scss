@@ -14,12 +14,15 @@
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-    height: 40px;
+    height: 30px;
 
     h5 {
         font-size: 0.95rem;
         font-weight: 600;
-        width: 80%;
+        width: 275px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     p {
@@ -31,7 +34,7 @@
 .productDescription {
     height: 70px;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 18px;
     color: #4E4E4E;
     white-space: pre-wrap;
@@ -64,4 +67,5 @@
 
 .quantity {
     font-size: 12px;
+    margin-bottom: 10px;
 }

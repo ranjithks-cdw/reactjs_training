@@ -19,8 +19,12 @@
 }
 
 .productName {
+    width: 185px;
     font-size: 0.77rem;
     font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .price {

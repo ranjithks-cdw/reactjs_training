@@ -31,7 +31,8 @@ export const ORDERS_PAGE = {
 export const CART_CONTAINER = {
     CART: 'MY CART',
     WISHLIST: 'MY WISHLIST',
-    AMOUNT: 'TOTAL AMOUNT'
+    AMOUNT: 'TOTAL AMOUNT',
+    MESSAGE: 'No items found. Add any item'
 };
 
 export const BUTTON = {
@@ -50,3 +51,5 @@ export const RUPEE_SYMBOL = '₹';
 export const QUANTITY = 'Quantity : ';
 
 export const PAGE_NOT_FOUND = 'Page Not Found';
+
+export const BROKEN_IMAGE_URL = 'https://png.pngtree.com/template/20220419/ourmid/pngtree-photo-coming-soon-abstract-admin-banner-image_1262901.jpg';

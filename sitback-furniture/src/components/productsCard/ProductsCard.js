@@ -10,7 +10,8 @@ import {transformGuaranteeMessage, transformIndianRupee} from '../../services/tr
  * @returns Products Card component
  * @author @ranjithks-cdw
  */
-const ProductsCard = ({product, showCart, isProductsPage, wishListManager, cartManager}) => {
+const ProductsCard = (props) => {
+    const {product, showCart, isProductsPage, wishListManager, cartManager} = props;
     const guaranteeMessage = transformGuaranteeMessage(product.guarantee);
     const price = transformIndianRupee(product.price);
     // Method to add product to wish list

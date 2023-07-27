@@ -9,7 +9,8 @@ import styles from './CartCard.module.scss';
  * @returns Cart Card component
  * @author @ranjithks-cdw
  */
-const CartCard = ({product, isCart, cartManager, quantityManager}) => {
+const CartCard = (props) => {
+    const { product, isCart, cartManager, quantityManager} = props;
     const price = transformIndianRupee(product.price);
     
     // Method to increment quantity of product in cart

@@ -2,12 +2,13 @@
     display: flex;
     justify-content: space-evenly;
     flex-flow: row nowrap;
-    gap: 4.35rem;
+    gap: 68px;
+    margin-left: 12px;
     
     list-style: none;
     a {
         padding-bottom: 15px;
-        font-size: 0.95rem;
+        font-size: 15px;
         font-weight: 500;
         color: #000;
         &:hover, &.active {

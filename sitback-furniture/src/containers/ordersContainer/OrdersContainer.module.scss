@@ -1,0 +1,25 @@
+.ordersContainer {
+    padding: 72px 0 65px 160px;
+    background-color: #F7F7F7;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.description {
+    margin: 12px 0 18px 0;
+    font-size: 15.3px;
+    font-weight: 400;
+}
+
+.productsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 45px 40px;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

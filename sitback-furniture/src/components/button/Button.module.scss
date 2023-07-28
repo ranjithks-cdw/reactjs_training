@@ -1,0 +1,36 @@
+.btn {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #FFF;
+    background-color: #000;
+    border: none;
+    border-bottom-right-radius: 5px;
+}
+.shopNow {
+    padding: 10px 30px;
+}
+.wishListButton {
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #888;
+    background-color: #FFF;
+}
+
+.cartButton, .orderButton {
+    padding: 10px 20px;
+}
+
+.incrementButton, .decrementButton {
+    font-size: 14px;
+    color: #000;
+    background-color: #FFF;
+    cursor: pointer;
+}
+
+.cartContentButton {
+    position: absolute;
+    bottom: -12px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 0.65rem;
+}

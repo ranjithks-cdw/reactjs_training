@@ -1,0 +1,38 @@
+.homeContainer {
+    width: 82%;
+    margin: 50px auto;
+    
+    .title {
+        font-size: 2.8rem;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .description {
+        font-size: 1.75rem;
+        font-weight: 400;
+    }
+}
+
+.cardsContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    margin-top: 30px;
+}
+
+.loader {
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 350px;
+}
+
+.loaderContainer {
+    height: 700px;
+    width: 50%;
+    margin: auto;
+    overflow: hidden;
+}

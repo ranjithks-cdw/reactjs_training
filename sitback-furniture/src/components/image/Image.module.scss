@@ -1,0 +1,25 @@
+.categoryImage {
+    height: 590px;
+}
+
+.productsImage {
+    height: 185px;
+    img {
+        border-radius: 0px 10px 10px 10px;
+    }
+}
+
+.icon {
+    height: 2px;
+}
+
+.cartImage {
+    position: absolute;
+    top: 10px;
+    left: -15px;
+    height: 80px;
+    width: 120px;
+    img {
+        border-radius: 10px;
+    }
+}

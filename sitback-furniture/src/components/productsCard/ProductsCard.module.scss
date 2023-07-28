@@ -1,0 +1,71 @@
+.card {
+    flex-basis: 23%;
+
+    &.displayCart {
+        flex-basis: 31%;
+    }
+
+    &.ordersPage {
+        flex-basis: 24%;
+    }
+}
+
+.productTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    height: 30px;
+
+    h5 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        width: 275px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    p {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+    }
+}
+
+.productDescription {
+    height: 70px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 18px;
+    color: #4E4E4E;
+    white-space: pre-wrap;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+}
+
+.guaranteeContainer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 10px;
+    font-size: 1.3rem;
+    color: #008800;
+    border-bottom: 1px solid #EEE;
+    
+    p {
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 0 0 0;
+}
+
+.quantity {
+    font-size: 12px;
+    margin-bottom: 10px;
+}

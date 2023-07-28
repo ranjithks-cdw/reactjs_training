@@ -9,7 +9,7 @@ import { addToCart, addToWishlist } from "../../utils/ShoppingPageUtils";
  * @ranjithks-cdw
  */
 const ProductsPage = () => {
-    const [showCart, setShowCart] = useState(false);
+    const [showCart, setShowCart] = useState();
     const [wishlist, setWishlist] = useState(() => {
         const storedList = localStorage.getItem('wishlist');
         return JSON.parse(storedList) ?? [];
@@ -20,43 +20,29 @@ const ProductsPage = () => {
     });
     const [activeTab, setActiveTab] = useState('cart');
 
-    const toggleTab = tab => {
-        setActiveTab(tab);
-    };
-
-    useEffect(() => {
-
-    },[activeTab]);
-    
-    useEffect(() => {
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-    },[wishlist]);
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    },[cart]);
-
-    useEffect(() => {
-        cart.length > 0 || wishlist.length > 0 ? setShowCart(true) : setShowCart(false);
-    },[wishlist, cart]);
-
     const manageWishlist = product => {
         const tempList = addToWishlist(product);
         setWishlist(tempList);
-        toggleTab('wishlist');
+        setActiveTab('wishlist');
+        setShowCart(true);
     };
 
     const manageCart = (product) => {
         const tempCart = addToCart(product, 1);
         setCart(tempCart);
-        toggleTab('cart');
+        setActiveTab('cart');
+        setShowCart(true);
     };
 
     const setCartVisbility = () => {
-        setShowCart(false);
-        setCart(JSON.parse(localStorage.getItem('cart')));
-        setWishlist(JSON.parse(localStorage.getItem('wishlist')));
-    }
+        setCart([]);
+        setWishlist([]);
+        setShowCart(cart.length > 0 || wishlist.length > 0);
+    };
+
+    useEffect(() => {
+        setShowCart(cart.length > 0 || wishlist.length > 0);
+    },[]);
     
     return (
         <div className={styles.shoppingPageContainer}>

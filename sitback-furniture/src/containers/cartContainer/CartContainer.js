@@ -16,20 +16,18 @@ const CartContainer = (props) => {
     const {cartData, wishlistData, activeTab, setCartVisbility} = props;
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState(() => {
-        const storedCart = localStorage.getItem('cart');
-        return JSON.parse(storedCart) ?? [];
+        const tempCart = localStorage.getItem('cart');
+        return JSON.parse(tempCart) ?? [];
     });
-    const [wishlistItems, setWishlistItems] = useState(()=> {
-        const storedWishlist = localStorage.getItem('wishlist');
-        return JSON.parse(storedWishlist) ?? [];
+    const [wishlistItems, setWishlistItems] = useState(() => {
+        const tempList = localStorage.getItem('wishlist');
+        return JSON.parse(tempList);
     });
+    const [price, setPrice] = useState();
     const [activeTabContent, setActiveTabContent] = useState(activeTab);
     const [messageContent, setMessageContent] = useState('');
-
-    useEffect(() => {
-        const message = `${CART_CONTAINER.MESSAGE} to ${activeTabContent}`;
-        setMessageContent(message);
-    },[activeTabContent]);
+    
+    // Order items
     const placeOrder = () => {
         localStorage.setItem('orders', JSON.stringify(cartItems));
         setCartItems([]);
@@ -37,25 +35,32 @@ const CartContainer = (props) => {
         navigate('/confirmOrder');
     };
 
+    // Manage cart and wishlist if item added from wishlist
     const manageCart = product => {
         const tempCart = addToCart(product, 1);
         const tempList = removeFromWishlist(product);
         
         setCartItems(tempCart);
         setWishlistItems(tempList);
+        amountCalculator(tempCart);
     };
 
+    // Manage quantity of cart items
     const manageQuantity = (quantity, product) => {
         const tempCart = addToCart(product, quantity);
-        
         setCartItems(tempCart);
+        amountCalculator(tempCart);
     }
     
+    // Toggle between wishlist and cart
     const toggleTab = (event) => {
-        setActiveTabContent(event.target.getAttribute('tab'));
+        const tabName = event.target.getAttribute('tab');
+        setActiveTabContent(tabName);
+        const message = `${CART_CONTAINER.MESSAGE} to ${tabName}`;
+        setMessageContent(message);
     };
-    const [price, setPrice] = useState();
     
+    // Calculate total cart amount
     const amountCalculator = (cartItems) => {
         const totalPrice = cartItems.reduce((total, item) => total + (parseInt(item.price) * item.quantity), 0);
         setPrice(transformIndianRupee(totalPrice));
@@ -63,36 +68,22 @@ const CartContainer = (props) => {
 
     useEffect(() => {
         amountCalculator(cartItems);
-        localStorage.setItem('cart',JSON.stringify(cartItems));
-    },[cartItems]);
+    },[]);
 
     useEffect(() => {
-        localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
-    },[wishlistItems]);
-
-    useEffect(() => {
+        setCartItems(cartData);
+        setWishlistItems(wishlistData);
         setActiveTabContent(activeTab);
-    },[activeTab]);
-
-    useEffect(() => {
-        setActiveTabContent(activeTabContent);
-    },[activeTabContent]);
+    },[cartData, wishlistData, activeTab]);
 
     useEffect(() => {
         if(cartItems.length <= 0 && wishlistItems.length <= 0) {
             setCartVisbility();
         }
-    },[cartItems, wishlistItems, setCartVisbility]);
+    },[cartItems]);
 
-    useEffect(()=> {
-        setCartItems(cartData);
-    },[cartData]);
 
-    useEffect(()=> {
-        setWishlistItems(wishlistData);
-    },[wishlistData]);
-
-    const cards = activeTabContent === 'cart' ? cartItems.map(product => <CartCard isCart={true} key={product.id} product={product} quantityManager={manageQuantity}/>) : wishlistItems.map(product => <CartCard key={product.id} product={product} isCart={false} cartManager={manageCart}/>);
+    const cards = activeTabContent === 'cart' ? cartItems?.map(product => <CartCard isCart={true} key={product.id} product={product} quantityManager={manageQuantity}/>) : wishlistItems?.map(product => <CartCard key={product.id} product={product} isCart={false} cartManager={manageCart}/>);
     return (
         <aside className={styles.cartContainer}>
             <div className={styles.cartWrapper}>

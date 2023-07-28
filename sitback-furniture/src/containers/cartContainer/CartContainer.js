@@ -67,6 +67,8 @@ const CartContainer = (props) => {
     };
 
     useEffect(() => {
+        const message = `${CART_CONTAINER.MESSAGE} to ${activeTab}`;
+        setMessageContent(message);
         amountCalculator(cartItems);
     },[]);
 

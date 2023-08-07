@@ -1,0 +1,32 @@
+@import '../../variables.scss';
+button {
+    border: none;
+    color: $primary-text-color;
+    cursor: pointer;
+}
+
+.luckyBtn {
+    padding: 1rem 1.75rem;
+    font-size: 1.5rem;
+    background-color: $button;
+}
+
+.watchBtn {
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #D3B526, $secondary-bg-color);
+}
+
+.loadMore {
+    width: 210px;
+    padding: 1.2rem 2rem;
+    font-size: 1.3rem;
+    background: linear-gradient(to right, #D3B526, $secondary-bg-color);
+}
+
+.login {
+    padding: 1.3rem 1.5rem;
+    width: 100%;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #D3B526, $secondary-bg-color);
+}

@@ -1,0 +1,19 @@
+.moviesContainer {
+    .sectionTitle {
+        margin: 0 auto 2rem;
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+
+    button {
+        margin-top: 50px;
+    }
+}
+
+.movieContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: 30px;
+}

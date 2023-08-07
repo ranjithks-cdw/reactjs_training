@@ -1,0 +1,28 @@
+@import '../../variables.scss';
+.languagesContainer {
+    width: 80%;
+    margin: 5rem auto;
+    h5 {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        color: $primary-text-color;
+    }
+}
+
+.languages {
+    display: flex;
+    gap: 10px;
+
+    .language {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: 1.5px solid #3566bc;
+        color: #3566bc;
+        font-size: 2rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+}

@@ -15,40 +15,44 @@ const initUserDetails = {
 
 export const userContext = createContext(initUserDetails);
 export const movieContext = createContext({});
+export const likeContext = createContext(false);
 
 /**
  * @description Method to construct App component
  * @returns App Component
  */
 const App = () => {
-  const [userDetails, setUserDetails] = useState(initUserDetails);
+  const [userDetails, setUserDetails] = useState(JSON.parse(localStorage.getItem('user')) || {...initUserDetails});
   const [currentMovie, setCurrentMovie] = useState({});
+  const [likeChanged, setLikeChanged] = useState(false);
   return (
     <userContext.Provider value={{userDetails, setUserDetails}}>
       <movieContext.Provider value={{currentMovie, setCurrentMovie}}>
-        <BrowserRouter>
-          <div className="App">
-            <AppHeader />
-            <Routes>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/login' element={
-                <Suspense fallback={<FadeLoader />}>
-                  <Login />
+        <likeContext.Provider value={{likeChanged, setLikeChanged}} >
+          <BrowserRouter>
+            <div className="App">
+              <AppHeader />
+              <Routes>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/login' element={
+                  <Suspense fallback={<FadeLoader />}>
+                    <Login />
+                  </Suspense>
+                } />
+                <Route path='/allMovies' element={
+                  <Suspense fallback={<FadeLoader />}>
+                  <AllMovies />
                 </Suspense>
-              } />
-              <Route path='/allMovies' element={
-                <Suspense fallback={<FadeLoader />}>
-                <AllMovies />
-              </Suspense>
-              } />
-              <Route path='/showTime' element={
-                <Suspense fallback={<FadeLoader />}>
-                <NowShowing />
-              </Suspense>
-              } />
-            </Routes>
-          </div>
-        </BrowserRouter>
+                } />
+                <Route path='/showTime' element={
+                  <Suspense fallback={<FadeLoader />}>
+                  <NowShowing />
+                </Suspense>
+                } />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </likeContext.Provider>
       </movieContext.Provider>
     </userContext.Provider>
   );

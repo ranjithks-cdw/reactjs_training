@@ -4,7 +4,7 @@ import {FaThumbsUp} from 'react-icons/fa6';
 import Image from '../image/Image';
 import { DETAILS_AD_SETTINGS, ALL_MOVIES, IMAGE_URLS } from '../../constants/pageConstants';
 import WithAdvertisement from '../hoc/WithAdvertisement';
-import { movieContext } from '../../App';
+import { likeContext, movieContext } from '../../App';
 import { minuteConverter } from '../../utils/minuteConverter';
 import styles from './MovieDetails.module.scss';
 
@@ -15,9 +15,11 @@ import styles from './MovieDetails.module.scss';
 const MovieDetails = props => {
     const {timer, message, showAd, showNotification, displayContent, displayAd, stopAd} = props;
     const {currentMovie, setCurrentMovie} = useContext(movieContext);
+    const {setLikeChanged} = useContext(likeContext);
     const [movie, setMovie] = useState({});
     
     const updateLike = () => {
+        setLikeChanged(true);
         setCurrentMovie({...currentMovie, likes: parseInt(currentMovie.likes) + 1});
     };
 
@@ -27,6 +29,7 @@ const MovieDetails = props => {
         // Change movie state and start ad timer
         if(currentMovie.id !== movie.id) {
             setMovie(currentMovie);
+            stopAd();
             displayContent(DETAILS_AD_SETTINGS.TIME_BEFORE_AD, 0, DETAILS_AD_SETTINGS.ADVERTISEMENT_MESSAGE);
         }
         // Display content remaining time notification
@@ -53,7 +56,7 @@ const MovieDetails = props => {
         return () => {
             clearInterval(interval);
         }
-    },[currentMovie?.id,currentMovie?.likes, timer]);
+    },[currentMovie?.id, timer]);
     
     const actorsList = currentMovie?.actors?.map((actor, index) => <li key={index}>{actor}</li>)
     return (

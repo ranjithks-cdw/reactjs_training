@@ -16,7 +16,8 @@ const MoviesCard = props => {
     const movieHandler = () => {
         setCurrentMovie(movie);
     };
-    const likeHandler = () => {
+    const likeHandler = (event) => {
+        event.stopPropagation();
         updateLike(movie);
     };
     

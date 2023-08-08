@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BUTTON, LOGIN_PAGE, NAVIGATION_LINKS, USER_DETAILS } from '../../constants/pageConstants';
 import Button from '../button/Button';
@@ -15,13 +15,14 @@ const LoginCard = () => {
     const [message, setMessage] = useState(LOGIN_PAGE.DESCRIPTION);
     const [email, bindEmail, resetEmail] = useInput();
     const [password, bindPassword, resetPassword] = useInput();
-    const {setUserDetails} = useContext(userContext);
+    const {userDetails, setUserDetails} = useContext(userContext);
     const navigate = useNavigate();
 
     // Method to validate user
     const validateUser = () => {
         if(LoginService(email,password)) {
             setUserDetails({isLoggedIn: true, name:USER_DETAILS.NAME});
+            localStorage.setItem('user', JSON.stringify({isLoggedIn: true, name:USER_DETAILS.NAME}));
             navigate(NAVIGATION_LINKS[0].URL);
         }
         else {
@@ -29,7 +30,14 @@ const LoginCard = () => {
         }
         resetEmail();
         resetPassword();
-    }
+    };
+
+    useEffect(() => {
+        if(userDetails.isLoggedIn) {
+            setUserDetails({isLoggedIn: false, name:''});
+            localStorage.setItem('user', JSON.stringify({isLoggedIn: false, name:''}));
+        }
+    },[navigate]);
 
     return (
         <div className={styles.loginCard}>

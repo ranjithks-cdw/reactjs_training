@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
  * @returns Button Component
  */
 const Button = (props) => {
-    const {className, btnClickHandler, children} = props;
+    const {className, btnClickHandler, children, disabled} = props;
 
     //Method to handle click event
     const handleClick = () => {
@@ -14,17 +14,19 @@ const Button = (props) => {
     };
 
     return (
-        <button className={`${styles.btn} ${styles[className]}`} onClick={handleClick}>{children}</button>
+        <button className={`${styles.btn} ${styles[className]}`} onClick={handleClick} disabled={disabled}>{children}</button>
     );
 };
 
 Button.propTypes = {
     className: PropTypes.string,
     onClick: PropTypes.func,
-    children: PropTypes.string.isRequired
+    children: PropTypes.string.isRequired,
+    disabled: PropTypes.bool
 };
 
 Button.defaultProps = {
+    disabled: false,
     children: 'Button',
     handleClick: () => {}
 };

@@ -3,6 +3,10 @@
     width: 100%;
     height: 100px;
     background: linear-gradient(to right, #D3B526, $secondary-bg-color);
+
+    button:disabled, button[disabled] {
+        cursor: not-allowed;
+    }
 }
 .lotteryContent {
     display: flex;

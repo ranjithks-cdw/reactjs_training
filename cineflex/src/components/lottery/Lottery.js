@@ -14,6 +14,7 @@ const Lottery = () => {
     const [errorType, setErrorType] = useState(null);
     const [mobile, bindMobile, resetMobile] = useInput();
     const checkLottery = () => {
+        if(mobile.length !== 10) return;
         const status = checkForPrize(mobile);
         resetMobile();
         if(status === ERRORS.INVALID || status === ERRORS.UNLUCKY) {
@@ -21,7 +22,7 @@ const Lottery = () => {
             setIsLucky(false);
         }
         setIsLucky(true);
-    }
+    };
 
     useEffect(() => {
         if(errorType === ERRORS.INVALID)
@@ -38,8 +39,8 @@ const Lottery = () => {
                     :
                     <div className={styles.lotteryContent}>
                         <p className={styles.description}>{LOTTERY.DESCRIPTION}</p>
-                        <input type="tel" className={styles.phoneNumberInput} placeholder={INPUTS.PHONE_NUMBER} {...bindMobile}/>
-                        <Button className="luckyBtn" btnClickHandler={checkLottery}>{BUTTON.LUCKY}</Button> 
+                        <input type="tel" className={styles.phoneNumberInput} placeholder={INPUTS.PHONE_NUMBER} {...bindMobile} maxLength={10} minLength={10}/>
+                        <Button className="luckyBtn" btnClickHandler={checkLottery} disabled={mobile.length !== 10}>{BUTTON.LUCKY}</Button> 
                     </div>
                 }
         </div>

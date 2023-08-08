@@ -1,7 +1,9 @@
 @import '../../variables.scss';
-.nowShowingContainer {
-    padding: 3rem 0 5rem;
+body {
     background-color: #111;
+}
+.nowShowingContainer {
+    padding: 3rem 0 3rem;
 }
 
 .nowShowingContent {
@@ -30,7 +32,7 @@
 }
 
 .description {
-    margin-top: 2rem;
+    margin: 2rem 0 5rem;
     font-size: 1.35rem;
     line-height: 1.2;
 }

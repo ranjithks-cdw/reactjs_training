@@ -3,6 +3,10 @@ button {
     border: none;
     color: $primary-text-color;
     cursor: pointer;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 }
 
 .luckyBtn {

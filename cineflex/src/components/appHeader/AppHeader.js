@@ -14,15 +14,15 @@ const AppHeader = () => {
     const location = useLocation();
     const [isLoginPage, setIsLoginPage] = useState(false);
     const {userDetails, setUserDetails} = useContext(userContext);
-    const [logName, setLogName] = useState(LOG_STATUS.LOGGED_OUT);
-
-    useEffect(() => {
-        userDetails.isLoggedIn ? setLogName(LOG_STATUS.LOGGED_IN) : setLogName(LOG_STATUS.LOGGED_OUT);
-    },[userDetails])
+    
     useEffect(() => {
         if(location.pathname === LOGIN_LINK) {
             setIsLoginPage(true);
-            setUserDetails({isLoggedIn: false, name: ''})
+            setUserDetails({isLoggedIn: false, name: ''});
+            localStorage.setItem('user', JSON.stringify({
+                isLoggedIn: false,
+                name: ''
+              }));
         }
         else {
             setIsLoginPage(false);
@@ -39,12 +39,12 @@ const AppHeader = () => {
                     <Navigation />
                     <div className={styles.profileContainer}>
                         {!userDetails.isLoggedIn ? 
-                            <NavLink className={styles.logStatus} to='/login'>{logName}</NavLink>
+                            <NavLink className={styles.logStatus} to='/login'>{LOG_STATUS.LOGGED_OUT}</NavLink>
                             :
                             <>
                                 <p className={styles.profile}>{HI} {userDetails.name}</p>
                                 <div className={styles.separator}></div>
-                                <NavLink className={styles.logStatus} to='/login'>{logName}</NavLink>
+                                <NavLink className={styles.logStatus} to='/login'>{LOG_STATUS.LOGGED_IN}</NavLink>
                             </>
                         }
                     </div> 

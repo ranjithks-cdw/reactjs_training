@@ -18,18 +18,15 @@ const AllMovies = () => {
     const [load, setLoad] = useState(true);
     
     useEffect(() => {
-        const loadTimer = setTimeout(() => {
-            setLoad(false);
-        }, 2000);
         const getMoviesList = async () => {
             const movies = await getMovies();
             setMovies(movies);
-            movies.length > 0 && setCurrentMovie(movies[0]);
+            if(movies.length > 0) {
+                setCurrentMovie(movies[0]);
+                setLoad(false);
+            }
         }
         getMoviesList();
-        return () => {
-            clearTimeout(loadTimer);
-        }
     },[]);
 
     useEffect(() => {

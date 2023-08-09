@@ -1,19 +1,12 @@
-import {memo, useContext, useEffect} from 'react'
-import { LOGIN_LINK, NOW_SHOWING, TRAILERS } from '../../constants/pageConstants';
+import {memo} from 'react'
+import { NOW_SHOWING, TRAILERS } from '../../constants/pageConstants';
 import styles from './NowShowing.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { userContext } from '../../App';
 /**
  * @description Method to construct Now Showing page component
  * @returns Now Showing Component
  */
 const NowShowing = () => {
-    const navigate = useNavigate();
-    const {userDetails} = useContext(userContext);
 
-    useEffect(() => {
-        !userDetails.isLoggedIn && navigate(LOGIN_LINK);
-    },[userDetails]);
     return (
         <div className={styles.nowShowingContainer}>
             <div className={styles.nowShowingContent}>

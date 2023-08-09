@@ -15,16 +15,10 @@ const Teasers = () => {
     useEffect(() => {
         const getTeasers = async () => {
             const teasers = await getShortTeasers();
-            setTeasers(teasers);    
+            setTeasers(teasers);
+            teasers.length > 0 && setLoad(false);  
         }
         getTeasers();
-        const loadTimer = setTimeout(() => {
-            setLoad(false);
-        }, 2000);
-
-        return () => {
-            clearTimeout(loadTimer);
-        }
     },[]);
     const teaserCards = teasers?.map((teaser,index) => <TeaserCards key={index} movie={teaser} poster={TEASERS.VIDEO_POSTERS[index]}/>);
     return (

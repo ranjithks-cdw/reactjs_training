@@ -3,6 +3,8 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import HomePage from './screens/homePage/HomePage';
 import AppHeader from './components/appHeader/AppHeader';
 import { FadeLoader } from 'react-spinners';
+import ProtectedRoutes from './components/protectedRoutes/ProtectedRoutes';
+import { LOGIN_LINK } from './constants/pageConstants';
 const AllMovies = lazy(() => import ('./screens/allMovies/AllMovies'));
 // import AllMovies from './screens/allMovies/AllMovies';
 const NowShowing =  lazy(() => import('./screens/nowShowing/NowShowing'));
@@ -45,9 +47,11 @@ const App = () => {
                 </Suspense>
                 } />
                 <Route path='/showTime' element={
-                  <Suspense fallback={<FadeLoader />}>
-                  <NowShowing />
-                </Suspense>
+                  <ProtectedRoutes redirectPath={LOGIN_LINK} isAllowed={userDetails.isLoggedIn}>
+                    <Suspense fallback={<FadeLoader />}>
+                      <NowShowing />
+                    </Suspense>
+                  </ProtectedRoutes>
                 } />
               </Routes>
             </div>

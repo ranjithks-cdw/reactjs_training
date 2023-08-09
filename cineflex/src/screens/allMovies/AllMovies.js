@@ -5,7 +5,7 @@ import MovieDetails from '../../components/movieDetails/MovieDetails';
 import { getMovies } from '../../services/MoviesService';
 import styles from './AllMovies.module.scss';
 import { updateMovie } from '../../utils/updateMovie';
-import { likeContext, movieContext } from '../../App';
+import { movieContext } from '../../App';
 
 /**
  * @description Method to construct All Movies component
@@ -14,7 +14,6 @@ import { likeContext, movieContext } from '../../App';
 const AllMovies = () => {
     const [movies,setMovies] = useState([]);
     const {currentMovie, setCurrentMovie} = useContext(movieContext);
-    const {likeChanged, setLikeChanged} = useContext(likeContext);
     const [load, setLoad] = useState(true);
     
     useEffect(() => {
@@ -30,11 +29,9 @@ const AllMovies = () => {
     },[]);
 
     useEffect(() => {
-        if(!likeChanged) return;
         const updatedMovies = updateMovie(movies, currentMovie);
         updatedMovies.length > 0 && setMovies(updatedMovies);
-        setLikeChanged(false);
-    },[currentMovie, likeChanged]);
+    },[currentMovie]);
     
     return (
         <div className={styles.moviesPage}>

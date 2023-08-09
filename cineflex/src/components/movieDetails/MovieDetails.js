@@ -4,7 +4,7 @@ import {FaThumbsUp} from 'react-icons/fa6';
 import Image from '../image/Image';
 import { DETAILS_AD_SETTINGS, ALL_MOVIES, IMAGE_URLS } from '../../constants/pageConstants';
 import WithAdvertisement from '../hoc/WithAdvertisement';
-import { likeContext, movieContext } from '../../App';
+import { movieContext } from '../../App';
 import { minuteConverter } from '../../utils/minuteConverter';
 import styles from './MovieDetails.module.scss';
 
@@ -15,11 +15,9 @@ import styles from './MovieDetails.module.scss';
 const MovieDetails = props => {
     const {timer, message, showAd, showNotification, displayContent, displayAd, stopAd} = props;
     const {currentMovie, setCurrentMovie} = useContext(movieContext);
-    const {setLikeChanged} = useContext(likeContext);
     const [movie, setMovie] = useState({});
     
     const updateLike = () => {
-        setLikeChanged(true);
         setCurrentMovie({...currentMovie, likes: parseInt(currentMovie.likes) + 1});
     };
 

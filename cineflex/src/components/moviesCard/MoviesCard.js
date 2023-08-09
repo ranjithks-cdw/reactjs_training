@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {FaThumbsUp} from 'react-icons/fa6';
 import PropTypes from 'prop-types';
 import Image from '../image/Image';
@@ -13,20 +13,26 @@ import { movieContext } from '../../App';
 const MoviesCard = props => {
     const {movie, updateLike} = props;
     const {setCurrentMovie} = useContext(movieContext);
+    const [movieLike, setMovieLike] = useState(movie.likes);
     const movieHandler = () => {
         setCurrentMovie(movie);
     };
     const likeHandler = (event) => {
         event.stopPropagation();
+        setMovieLike(parseInt(movieLike) + 1);
         updateLike(movie);
     };
+
+    useEffect(() => {
+        setMovieLike(movie.likes);
+    },[movie.likes]);
     
     return (
         <div className={styles.movieCard} onClick={movieHandler}>
             <Image src={movie.link} alt={movie.movie} className='movieCardImage' />
             <p className={styles.movieTitle}>{movie.movie}</p>
             <div className={styles.likesContainer}>
-                <p>{movie.likes} {ALL_MOVIES.LIKES}</p>
+                <p>{movieLike} {ALL_MOVIES.LIKES}</p>
                 <FaThumbsUp className={styles.likesIcon} onClick={likeHandler}/>
             </div>
         </div>

@@ -18,7 +18,7 @@ const TeaserCards = props => {
 
     // Method to change video state
     const toggleVideoState = () => {
-        if(videoRef?.current) {
+        if(videoRef?.current && !showAd) {
             videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
         }
     }

@@ -1,0 +1,50 @@
+@import '../../variables.scss';
+.loginCard:not(.btn) {
+    opacity: 0.85;
+}
+.loginCard {
+    position: absolute;
+    top:20%;
+    right: 6.5%;
+    padding: 5rem 2.5rem 2.5rem;
+    width: 25rem;
+    height: 32.5rem;
+    color: $primary-text-color;
+    background-color: #010100;
+    border-top: 0.25rem solid $secondary-bg-color;
+}
+
+.loginTitle {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.loginDescription {
+    height: 3rem;
+    margin: 2rem auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0.5;
+}
+
+.inputGroup {
+    margin: 2rem 0;
+    
+    .inputLabel {
+        display: block;
+        opacity: 0.5;
+    }
+
+    .input {
+        margin-top: 0.5rem;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid #544d4d;
+        font-size: 1.1rem;
+        color: $primary-text-color;
+        &:focus {
+            outline: none;
+        }
+    }
+}

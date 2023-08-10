@@ -1,0 +1,18 @@
+@import '../../variables.scss';
+.navMenu {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 52px;
+    margin-left: -6rem;
+
+    list-style: none;
+    a {
+        font-size: 22px;
+        font-weight: 500;
+        color: #FFF;
+        text-decoration: none;
+        &:hover, &.active {
+            color: $secondary-text-color;
+        }
+    }
+}

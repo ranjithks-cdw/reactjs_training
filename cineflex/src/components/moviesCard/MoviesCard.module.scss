@@ -1,0 +1,26 @@
+.movieCard {
+    flex-basis: 30.3%;
+    
+    .movieTitle {
+        margin-top: 10px;
+        font-size: 1.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+    img {
+        cursor: pointer;
+    }
+}
+
+.likesContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2px;
+    font-weight: 300;
+
+    .likesIcon {
+        cursor: pointer;
+    }
+}

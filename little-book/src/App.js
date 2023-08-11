@@ -1,7 +1,9 @@
+import HomePage from "./pages/homePage";
+
 const App = () => {
   return (
-    <div className="App">
-      
+    <div className="App" id="light">
+      <HomePage />
     </div>
   );
 };

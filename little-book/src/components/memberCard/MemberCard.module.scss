@@ -1,0 +1,30 @@
+@import '../../styles/fonts.scss';
+
+.memberCard {
+    flex-basis: 150px;
+    height: 200px;
+    font-family: $font-ibm;
+
+    .memberName {
+        width: 150px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--pink-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        opacity: 0.8;
+    }
+    .company {
+        width: 150px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--company-name-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    p {
+        margin-top: 5px;
+    }
+}

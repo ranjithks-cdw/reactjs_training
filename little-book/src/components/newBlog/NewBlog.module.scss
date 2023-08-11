@@ -1,0 +1,42 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/variables.scss';
+.newBlogModal {
+    width: 35%;
+    height: 100vh;
+    padding: 80px 55px;
+    background-color: var(--white-color);
+}
+
+.inputContainer {
+    @include display-flex(flex-start, flex-start, row, wrap);
+    height: 85%;
+
+    .blogTitle, .blogDetails {
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: var(--white-color);
+        color: var(--add-new-input);
+
+        &::placeholder {
+            opacity: 0.5;
+        }
+    }
+    .blogTitle {
+        margin-bottom: 30px;
+        font-family: $font-roboto;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--primary-color);
+    }
+    .blogDetails {
+        height: 90%;
+        font-family: $font-ibm;
+        font-size: 1.1rem;
+        color: var(--black-color);
+        resize: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

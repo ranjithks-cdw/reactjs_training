@@ -1,0 +1,33 @@
+@import '../../styles/fonts.scss';
+button {
+    border: none;
+    border-radius: 50px;
+    font-family: $font-ibm;
+    text-transform: uppercase;
+}
+.newButton, .addButton {
+    width: 27%;
+    padding: 17.5px 25px;
+    font-size: 1rem;
+    color: var(--white-color);
+    background-color: var(--pink-color);
+    opacity: 0.85;
+}
+
+.editButton {
+    position: fixed;
+    right: 75px;
+    bottom: 50px;
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 0.8rem;
+    color: var(--black-color);
+    background-color: var(--edit-button-bg);
+}
+
+.addButton {
+    position: fixed;
+    right: 48px;
+    bottom: 65px;
+    width: 8%;
+}

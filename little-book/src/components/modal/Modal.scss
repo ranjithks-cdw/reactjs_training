@@ -17,4 +17,10 @@
         font-family: $font-roboto;
         color: var(--black-color);
     }
+    .modalContent {
+        width: 35%;
+        height: 100vh;
+        padding: 80px 55px;
+        background-color: var(--white-color);
+    }
 }

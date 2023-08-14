@@ -28,8 +28,15 @@ button {
     height: 100vh;
 }
 
+.loader {
+    position: relative;
+    top: 50%;
+    left: 40%;
+}
+
 #light {
     --primary-bg: #fff;
+    --logo-highlighter: #a239a8;
     --pink-color: #a239a8;
     --white-color: #fff;
     --black-color: #000;
@@ -39,6 +46,24 @@ button {
     --list-card-bg: #fff;
     --list-card-selected-bg: #96e2f5;
     --edit-button-bg: #69f8f8;
+    --member-name-color: #a239a8;
     --company-name-color: #000;
+    --add-new-input: #cacaca;
+}
+
+#dark {
+    --primary-bg: #041d2e;
+    --logo-highlighter: #fff;
+    --pink-color: #a239a8;
+    --white-color: #000;
+    --black-color: #fff;
+    --blog-list-bg: #000;
+    --blog-input-bg: #041d2e;
+    --blog-input-placeholder: #677681;
+    --list-card-bg: #042b46;
+    --list-card-selected-bg: #021929;
+    --edit-button-bg: #69f8f8;
+    --member-name-color: #fff;
+    --company-name-color: #b2b4b5;
     --add-new-input: #cacaca;
 }

@@ -1,15 +1,8 @@
 @import '../../styles/variables.scss';
-.membersModal {
-    width: 35%;
-    height: 100vh;
-    padding: 80px 55px;
-    background-color: var(--white-color);
-}
 
 .membersContainer {
     @include display-flex(flex-start, flex-start, row, wrap);
     gap: 40px 22.4px;
-    height: 84vh;
     overflow: auto;
     &::-webkit-scrollbar {
         display: none;

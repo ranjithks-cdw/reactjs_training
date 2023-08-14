@@ -1,9 +1,31 @@
+import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Filters from '../../components/filters/Filters';
-import { logoSplitter } from '../../utils/logoHelper';
 import { LOGO, SIDEBAR } from '../../constants/pageConstants';
 import styles from './SideBar.module.scss';
-const SideBar = () => {
+import { logoSplitter } from '../../utils/logoHelper';
+import { ThemeContext } from '../../App';
+
+/**
+ * @description Method to construct Sidebar Component
+ * @returns Sidebar Component
+ */
+const SideBar = props => {
+    const {showMembers, clearModal} = props;
+    const {isEditing} = useSelector(state => state.blogs);
     const title = logoSplitter(LOGO);
+    const {theme, toggleTheme} = useContext(ThemeContext);
+
+    // Method to change theme
+    const changeTheme = () => {
+        toggleTheme();
+    };
+    
+    // Method to show members
+    const displayMembers = () => {
+        isEditing ? clearModal(): showMembers();
+    };
     return (
         <aside className={styles.sidebarContainer}>
             <h1 className={styles.title}>
@@ -11,14 +33,24 @@ const SideBar = () => {
             </h1>
             <div className={styles.filter}>
                 <p className={styles.filterTitle}>{SIDEBAR.FILTER}</p>
-                <Filters />
+                <Filters clearModal={clearModal}/>
             </div>
             <div className={styles.utilityContainer}>
-                <p className={styles.members}>{SIDEBAR.VIEW_MEMBERS}</p>
-                <p className={styles.switch}>{SIDEBAR.SWITCH}</p>
+                <p className={styles.members} onClick={displayMembers}>{SIDEBAR.VIEW_MEMBERS}</p>
+                <p className={styles.switch} onClick={changeTheme}>{theme === 'light' ? SIDEBAR.SWITCH_DARK : SIDEBAR.SWITCH_LIGHT}</p>
             </div>
         </aside>
     );
+};
+
+SideBar.propTypes = {
+    showMembers: PropTypes.func,
+    clearModal: PropTypes.func
+};
+
+SideBar.defaultProps = {
+    clearModal: () => {},
+    showMembers: () => {}
 };
 
 export default SideBar;

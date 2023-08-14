@@ -1,4 +1,5 @@
 @import '../../styles/fonts.scss';
+@import '../../styles/variables.scss';
 
 .detailsContainer {
     width: 100%;
@@ -15,7 +16,7 @@
         border: none;
     }
     .blogTitle {
-        height: 7%;
+        height: 85px;
         margin: 20px auto 0;
         font-size: 2rem;
         font-family: $font-roboto;
@@ -30,5 +31,10 @@
         &::-webkit-scrollbar {
             display: none;
         }
+    }
+
+    .buttonContainer {
+        @include display-flex(flex-end, flex-start, row, nowrap);
+        gap: 15px;
     }
 }

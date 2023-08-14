@@ -5,7 +5,7 @@
     @include display-flex(space-between, flex-start, column, nowrap);
     flex-basis: 150px;
     min-width: 15%;
-    height: 95vh;
+    height: 100vh;
     padding: 3rem 50px 5vh 45px;
     background-color: var(--primary-bg);
 
@@ -14,7 +14,7 @@
         font-family: $font-roboto;
         font-size: 1.75rem;
         font-weight: 400;
-        color: var(--pink-color);
+        color: var(--logo-highlighter);
         opacity: 0.9;
         
         span{
@@ -26,6 +26,7 @@
 
 .filter {
     margin-top: 11rem;
+    color: var(--black-color);
     .filterTitle {
         margin-bottom: 20px;
         font-family: $font-ibm;
@@ -38,7 +39,7 @@
 .utilityContainer {
     font-family: $font-ibm;
     font-size: 0.9rem;
-    color: var(--color-black);
+    color: var(--black-color);
     cursor: pointer;
     
     .switch {

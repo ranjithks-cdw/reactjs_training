@@ -1,11 +1,5 @@
 @import '../../styles/fonts.scss';
 @import '../../styles/variables.scss';
-.newBlogModal {
-    width: 35%;
-    height: 100vh;
-    padding: 80px 55px;
-    background-color: var(--white-color);
-}
 
 .inputContainer {
     @include display-flex(flex-start, flex-start, row, wrap);
@@ -19,7 +13,7 @@
         color: var(--add-new-input);
 
         &::placeholder {
-            opacity: 0.5;
+            opacity: 0.75;
         }
     }
     .blogTitle {

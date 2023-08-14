@@ -1,17 +1,31 @@
-import { MODALS } from '../../constants/pageConstants';
-import { usersData } from '../../usersData';
+import PropTypes from 'prop-types';
 import MemberCard from '../memberCard/MemberCard';
 import styles from './MembersList.module.scss';
-const MembersList = () => {
-    const usersDataList = usersData.map(user => <MemberCard {...user} key={user.id}/>);
+import { MODALS } from '../../constants/pageConstants';
+
+/**
+ * @description Method to construct MembersList component
+ * @returns MembersList component
+ */
+const MembersList = props => {
+    const {membersData} = props;
+    const usersDataList = membersData?.map(user => <MemberCard {...user} key={user.id}/>);
     return (
-        <div className={styles.membersModal}>
-            <p className="modalTitle">{MODALS.MEMBERS_TITLE}</p>
+        <>
+            <p className="modalTitle">{MODALS.MEMBERS}</p>
             <div className={styles.membersContainer}>
                 {usersDataList}
             </div>
-        </div>
+        </>
     );
+};
+
+MembersList.propTypes = {
+    membersData: PropTypes.array
+};
+
+MembersList.defaultProps = {
+    membersData: [],
 };
 
 export default MembersList;

@@ -5,11 +5,11 @@ button {
     font-family: $font-ibm;
     text-transform: uppercase;
 }
-.newButton, .addButton {
+.newButton, .addButton, .cancelButton, .continueButton {
     width: 27%;
     padding: 17.5px 25px;
     font-size: 1rem;
-    color: var(--white-color);
+    color: #fff;
     background-color: var(--pink-color);
     opacity: 0.85;
 }
@@ -21,7 +21,7 @@ button {
     padding: 10px 20px;
     width: 150px;
     font-size: 0.8rem;
-    color: var(--black-color);
+    color: #000;
     background-color: var(--edit-button-bg);
 }
 
@@ -30,4 +30,23 @@ button {
     right: 48px;
     bottom: 65px;
     width: 8%;
+}
+
+.cancelButton, .saveButton {
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 0.8rem;
+    color: #000;
+    background-color: var(--edit-button-bg);
+}
+
+.saveButton {
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: var(--pink-color);
+}
+
+.continueButton {
+    padding: 10px 20px;
+    width: 150px;
 }

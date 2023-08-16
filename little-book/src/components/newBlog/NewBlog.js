@@ -1,12 +1,12 @@
-import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCallback, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PropTypes from 'prop-types';
 import Button from '../button/Button';
 import styles from './NewBlog.module.scss';
 import { BLOG_MESSAGES, BUTTONS, FALLBACK_IMAGE, INPUT_PLACEHOLDERS, LOCAL_BLOG_TYPE, MODALS } from '../../constants/pageConstants';
-import { addNewBlog } from '../../store';
+import { addNewBlog, modifyEditStatus } from '../../store';
 
 /**
  * @description Method to construct a new blog modal
@@ -17,14 +17,22 @@ const NewBlog = props => {
     const detailsRef = useRef();
     const dispatch = useDispatch();
 
+    const {blogData} = useSelector(state => {
+        return state.blogs;
+    });
+
     // Create new blog
     const createBlog = () => {
-        const titleContent = titleRef.current.value;
-        const descContent = detailsRef.current.value;
-        if(titleContent.trim().length <= 0 || titleContent.trim().length > 65 || descContent.trim().length <= 0) {
+        const titleContent = titleRef.current.value.trim();
+        const descContent = detailsRef.current.value.trim();
+        if(titleContent.length <= 0 || titleContent.length > 65 || descContent.length <= 0) {
             toast.error(BLOG_MESSAGES.ERROR, {
                 position: toast.POSITION.TOP_RIGHT
-            })
+            });
+        } else if (blogData.some(blog => blog.title === titleContent)) {
+            toast.error(BLOG_MESSAGES.DUPLICATE_TITLE, {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
         else {
             toast.success(BLOG_MESSAGES.SUCCESS, {
@@ -33,14 +41,26 @@ const NewBlog = props => {
             dispatch(addNewBlog({title: titleContent, details: descContent, photo: FALLBACK_IMAGE.BLOG, type: LOCAL_BLOG_TYPE}));
             props.clearModal(true);
         }
-    }
+    };
+
+    const changeEditStatus = useCallback(() => {
+        const titleContent = titleRef.current.value.trim();
+        const descContent = detailsRef.current.value.trim();
+        if(titleContent.length <= 0 || descContent.length <= 0) {
+            dispatch(modifyEditStatus(true));
+        }
+        else {
+            dispatch(modifyEditStatus(true));
+        }
+    },[]);
+
     return (
         <>
             <ToastContainer />
             <p className='modalTitle'>{MODALS.NEW_BLOG}</p>
             <div className={styles.inputContainer}>
-                <input ref={titleRef} type='text' className={styles.blogTitle} placeholder={INPUT_PLACEHOLDERS.TITLE}/>
-                <textarea ref={detailsRef} className={styles.blogDetails} placeholder={INPUT_PLACEHOLDERS.DETAILS}/>
+                <input ref={titleRef} type='text' className={styles.blogTitle} placeholder={INPUT_PLACEHOLDERS.TITLE} onChange={changeEditStatus}/>
+                <textarea ref={detailsRef} className={styles.blogDetails} placeholder={INPUT_PLACEHOLDERS.DETAILS} onChange={changeEditStatus}/>
             </div>
             <Button className="addButton" btnClickHandler={createBlog}>{BUTTONS.ADD}</Button>
         </>

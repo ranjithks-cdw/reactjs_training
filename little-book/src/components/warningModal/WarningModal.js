@@ -19,9 +19,9 @@ const WarningModal = props => {
     }
 
     return (
-        <div className={styles.modalContainer}>
-            <div className={styles.modalContent}>
-                <p className={styles.modalTitle}>{MODALS.WARNING}</p>
+        <div className={`${styles.modalContainer} modalContainer`}>
+            <div className={`${styles.modalContent} modalContent`}>
+                <p className={`modalTitle ${styles.modalTitle}`}>{MODALS.WARNING}</p>
                 <div className={styles.buttonsContainer}>
                     <Button className="cancelButton" btnClickHandler={cancelHandler}>{BUTTONS.CANCEL}</Button>
                     <Button className="continueButton" btnClickHandler={continueHandler}>{BUTTONS.CONTINUE}</Button>

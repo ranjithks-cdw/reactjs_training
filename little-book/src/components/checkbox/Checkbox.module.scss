@@ -1,0 +1,4 @@
+@import '../../styles/variables.scss';
+.checkBoxGrp {
+    @include display-flex(center, center, row, nowrap);
+}

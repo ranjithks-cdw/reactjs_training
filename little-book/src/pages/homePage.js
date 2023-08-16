@@ -9,7 +9,7 @@ import SideBar from "../containers/sideBar/SideBar";
 import { MODALS } from "../constants/pageConstants";
 import { retrieveUsers } from "../services/userService";
 import WarningModal from "../components/warningModal/WarningModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modifyEditStatus } from "../store";
 
 /**
@@ -22,6 +22,10 @@ const HomePage = () => {
     const [membersList, setMembersList] = useState([]);
     const [load, setLoad] = useState(true);
     const [showWarningModal, setShowWarningModal] = useState(false);
+
+    const { isEditing } = useSelector(state => {
+        return state.blogs;
+    });
 
     // Method to retrieve users data and show in modal
     const showMembers = useCallback(async () => {
@@ -47,10 +51,10 @@ const HomePage = () => {
 
     // Remove modal
     const clearModal = useCallback(isAdded => {
-        if(modal === MODALS.MEMBERS || isAdded)
+        if(modal === MODALS.MEMBERS || isAdded || !isEditing)
             return setModal();
-        setShowWarningModal(true);
-    },[modal]);
+         setShowWarningModal(true);
+    },[modal, isEditing]);
     return (
         <>
             <SideBar showMembers={showMembers} clearModal={clearModal}/>

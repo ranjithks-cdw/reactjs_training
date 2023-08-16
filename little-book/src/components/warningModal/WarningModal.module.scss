@@ -1,26 +1,17 @@
 @import '../../styles/fonts.scss';
 @import '../../styles/variables.scss';
 .modalContainer {
-    position: absolute;
-    top:0;
-    right:0;
-    left:0;
-    bottom:0;
-    @include display-flex(center, center, column, wrap);
-    background-color: rgba($color: #3e3e3e, $alpha: 0.9);
-    z-index: 999;
-
+    @include display-flex(center, center, row, wrap);
+    
     .modalContent {
-        width: 20%;
+        padding: 20px;
+        width: 30%;
+        height: 15%;
+        background-color: var(--white-color);
     }
 
     .modalTitle {
-        margin-bottom: 35px;
-        font-size: 1.3rem;
-        font-weight: 500;
-        font-family: $font-roboto;
         text-align: center;
-        color: #fff;
     }
 
     .buttonsContainer {

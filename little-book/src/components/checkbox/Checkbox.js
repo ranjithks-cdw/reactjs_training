@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SIDEBAR } from '../../constants/pageConstants';
+import styles from './Checkbox.module.scss';
 
 /**
  * @description Method to construct Checkbox Component
@@ -22,7 +23,7 @@ const Checkbox = props => {
     }
 
     return (
-        <div>
+        <div className={styles.checkBoxGrp}>
             <input type="checkbox" defaultChecked={true} id={label} value={label} onChange={toggleSelection} ref={inputRef}/>
             <label htmlFor={label}>{label} {SIDEBAR.BLOGS}</label>
         </div>

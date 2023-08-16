@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { retrieveBlogs } from '../thunks/blogThunk';
-import { updateCurrentBlog, updateFilteredBlogs } from '../../utils/blogHelper';
+import { updateFilteredBlogs } from '../../utils/blogHelper';
 
 const blogSlice = createSlice({
     name: 'blog',
@@ -14,25 +14,28 @@ const blogSlice = createSlice({
         isEditing: false,
         isLoad: false,
         error: null,
-        blogAdded: false,
+        scrollTop: true
     },
     reducers: {
         modifyTypes(state, action) {
             const index = state.selectedBlogTypes.indexOf(action.payload);
             index === -1 ? state.selectedBlogTypes.push(action.payload) : state.selectedBlogTypes.splice(index,1);
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
-            state.currentBlog = updateCurrentBlog(state.filteredBlogData, state.currentBlog);
+            state.currentBlog = state.filteredBlogData.length > 0 ? state.filteredBlogData[0]: null;
+            state.scrollTop = true;
             if(state.filteredBlogData.length >= 0) 
                 state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
         modifyCurrentBlog(state, action) {
-            state.currentBlog = action.payload;
+            state.currentBlog = {...action.payload, selected: true};
             state.filteredBlogData = state.filteredBlogData.map(blog => (blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog, selected: false}));
+            state.scrollTop = false;
         },
         modifySearchTerm(state, action) {
             state.searchTerm = action.payload;
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
-            state.currentBlog = updateCurrentBlog(state.filteredBlogData, state.currentBlog);
+            state.currentBlog = state.filteredBlogData.length > 0 ? state.filteredBlogData[0]: null;
+            state.scrollTop = true;
             if(state.filteredBlogData.length >= 0) 
                 state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
@@ -46,7 +49,7 @@ const blogSlice = createSlice({
             state.blogData = [modifiedBlog, ...blogData];
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
             state.isEditing = false;
-            state.blogAdded = true;
+            state.scrollTop = true;
             if(state.filteredBlogData.length >= 0) 
                 state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
@@ -55,17 +58,17 @@ const blogSlice = createSlice({
             if(!state.allBlogTypes.includes(newBlog.type.toLocaleLowerCase())) {
                 state.allBlogTypes.push(newBlog.type.toLocaleLowerCase());
             }
-            state.selectedBlogTypes.push(newBlog.type.toLocaleLowerCase());
+            if(!state.selectedBlogTypes.includes(newBlog.type.toLocaleLowerCase())) {
+                state.selectedBlogTypes.push(newBlog.type.toLocaleLowerCase());
+            }
             state.currentBlog = {...newBlog};
             state.blogData = [newBlog, ...state.blogData];
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
-            state.blogAdded = true;
+            state.scrollTop = true;
+            state.isEditing = false;
             if(state.filteredBlogData.length >= 0) 
                 state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
-        alterBlogAdded(state, action) {
-            state.blogAdded = action.payload;
-        }
     },
     extraReducers: builder => {
         builder.addCase(retrieveBlogs.pending, (state, action) => {
@@ -91,6 +94,6 @@ const blogSlice = createSlice({
     }
 });
 
-export const {modifyTypes, modifyCurrentBlog, modifySearchTerm, modifyEditStatus, modifyBlogDetails, addNewBlog, alterBlogAdded} = blogSlice.actions;
+export const {modifyTypes, modifyCurrentBlog, modifySearchTerm, modifyEditStatus, modifyBlogDetails, addNewBlog} = blogSlice.actions;
 
 export default blogSlice;

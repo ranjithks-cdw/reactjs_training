@@ -9,6 +9,7 @@ import styles from './Modal.scss';
 const Modal = (props) => {
     const {children, clearModal} = props;
     const modalRef = useRef(null);
+    
     // Method to remove modal
     const removeModal = event => {
         // remove modal if clicked outside of container

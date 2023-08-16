@@ -22,7 +22,7 @@
         font-family: $font-roboto;
     }
     .details {
-        height: 32vh;
+        height: 29.5vh;
         overflow: auto;
         font-size: 1.1rem;
         line-height: 1.5;
@@ -35,6 +35,13 @@
 
     .buttonContainer {
         @include display-flex(flex-end, flex-start, row, nowrap);
+        margin-top: 10px;
         gap: 15px;
+    }
+
+    .noBlogs {
+        margin: 40%;
+        font-family: $font-ibm;
+        color: var(--black-color);
     }
 }

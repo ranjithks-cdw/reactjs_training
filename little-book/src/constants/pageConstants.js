@@ -31,7 +31,7 @@ export const BUTTONS = {
 export const MODALS = {
     MEMBERS: 'Members',
     NEW_BLOG: `Add New Blog`,
-    WARNING: 'Click Continue to exit.'
+    WARNING: 'Click Continue to exit editing without saving.'
 };
 
 export const BLOG_LIST = {
@@ -40,6 +40,7 @@ export const BLOG_LIST = {
 
 export const BLOG_MESSAGES = {
     ERROR: `Enter valid title and description`,
+    DUPLICATE_TITLE: `Title Exists already. Please enter unique title`,
     SUCCESS: `Blog updated successfully`
 };
 

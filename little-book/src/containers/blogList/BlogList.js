@@ -6,7 +6,7 @@ import BlogCard from '../../components/blogCard/BlogCard';
 import Button from '../../components/button/Button';
 import { BLOG_LIST, BUTTONS, INPUT_PLACEHOLDERS } from '../../constants/pageConstants';
 import styles from './BlogList.module.scss';
-import { alterBlogAdded, modifyCurrentBlog, modifySearchTerm, retrieveBlogs } from '../../store';
+import { modifyCurrentBlog, modifySearchTerm, retrieveBlogs } from '../../store';
 
 /**
  * @description Method to construct BlogList component
@@ -16,7 +16,7 @@ const BlogList = props => {
     const dispatch = useDispatch();
     const blogListRef = useRef();
     const {showAddBlogModal, clearModal} = props;
-    const {filteredBlogData, isLoad, isEditing, blogAdded} = useSelector(state => {
+    const {filteredBlogData, isLoad, isEditing, scrollTop} = useSelector(state => {
         return state.blogs;
     });
 
@@ -36,30 +36,30 @@ const BlogList = props => {
 
     // Change search term
     const updateSearchTerm = event => {
-        if(isEditing) return clearModal();
         const term = event.target.value;
         setSearchValue(term);
         dispatch(modifySearchTerm(term));
     };
 
+    // Restrict search when user is editing
+    const checkEditing = () => {
+        isEditing && clearModal();
+    };
+
     // Fetch blog data
     useEffect(() => {
         dispatch(retrieveBlogs());
-    },[]);
-
-    useEffect(() => {
-        dispatch(alterBlogAdded(false));
-    },[dispatch, blogAdded]);
+    },[dispatch]);
     
     const blogs = filteredBlogData.map((blog,index) => {
-        blogListRef && blogAdded && blogListRef.current.scrollTo(0,0);
-        return <BlogCard blogData={blog} key={index} updateCurrentBlog={updateCurrentBlog} />
+        blogListRef.current && scrollTop && blogListRef.current.scrollTo(0,0);
+        return <BlogCard blogData={blog} key={index} updateCurrentBlog={updateCurrentBlog}/>
     });
     
     return (
         <div className={styles.blogListContainer}>
             <div className={styles.searchBar}>
-                <input type='text' className={styles.search} placeholder={INPUT_PLACEHOLDERS.SEARCH} value={searchValue} onChange={updateSearchTerm}/>
+                <input type='text' className={styles.search} placeholder={INPUT_PLACEHOLDERS.SEARCH} value={searchValue} onChange={updateSearchTerm} onFocus={checkEditing}/>
                 <Button className="newButton" btnClickHandler={createBlog}>{BUTTONS.NEW}</Button>
             </div>
             <div className={styles.blogsContainer} ref={blogListRef}>

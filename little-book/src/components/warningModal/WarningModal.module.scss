@@ -2,10 +2,11 @@
 @import '../../styles/variables.scss';
 .modalContainer {
     @include display-flex(center, center, row, wrap);
+    background-color: rgba($color: #636161, $alpha: 0.9);
     
     .modalContent {
         padding: 20px;
-        width: 30%;
+        width: 32%;
         height: 15%;
         background-color: var(--white-color);
     }
@@ -15,6 +16,6 @@
     }
 
     .buttonsContainer {
-        @include display-flex(space-between, center, row, wrap);
+        @include display-flex(space-around, center, row, wrap);
     }
 }

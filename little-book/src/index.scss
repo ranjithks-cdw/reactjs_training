@@ -1,0 +1,73 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar { 
+        display: none;
+    }
+}
+  
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+button {
+    cursor: pointer;
+}
+
+.App {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.loader {
+    position: relative;
+    top: 50%;
+    left: 40%;
+}
+
+#light {
+    --primary-bg: #fff;
+    --logo-highlighter: #a239a8;
+    --pink-color: #a239a8;
+    --white-color: #fff;
+    --black-color: #000;
+    --blog-list-bg: #f5f6fa;
+    --blog-input-bg: #ebecf4;
+    --blog-input-placeholder: #95969a;
+    --list-card-bg: #fff;
+    --list-card-selected-bg: #96e2f5;
+    --edit-button-bg: #69f8f8;
+    --member-name-color: #a239a8;
+    --company-name-color: #000;
+    --add-new-input: #cacaca;
+    --permanent-black: #000;
+    --permanent-white: #fff;
+}
+
+#dark {
+    --primary-bg: #041d2e;
+    --logo-highlighter: #fff;
+    --pink-color: #a239a8;
+    --white-color: #000;
+    --black-color: #fff;
+    --blog-list-bg: #000;
+    --blog-input-bg: #041d2e;
+    --blog-input-placeholder: #677681;
+    --list-card-bg: #042b46;
+    --list-card-selected-bg: #021929;
+    --edit-button-bg: #69f8f8;
+    --member-name-color: #fff;
+    --company-name-color: #b2b4b5;
+    --add-new-input: #cacaca;
+    --permanent-black: #000;
+    --permanent-white: #fff;
+}

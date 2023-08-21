@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+@import '../../styles/fonts';
+.filters {
+    @include display-flex(space-between, flex-start, column, nowrap);
+    font-family: $font-roboto;
+    font-size: 0.9rem;
+    color: var(--black-color);
+    opacity: 0.8;
+
+    label {
+        margin-bottom: 20px;
+        cursor: pointer;
+        text-transform: capitalize;
+    }
+    input[type="checkbox"] {
+        margin: 0 12.5px 20px 0;
+        width: 1.3rem;
+        height: 1.3rem;
+        accent-color: var(--pink-color);
+        color:  var(--pink-color);
+        cursor: pointer;
+    }
+}

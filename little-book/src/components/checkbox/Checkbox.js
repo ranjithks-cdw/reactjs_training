@@ -24,7 +24,7 @@ const Checkbox = props => {
 
     return (
         <div className={styles.checkBoxGrp}>
-            <input type="checkbox" defaultChecked={true} id={label} value={label} onChange={toggleSelection} ref={inputRef}/>
+            <input data-testid="checkboxInput" type="checkbox" defaultChecked={true} id={label} value={label} onChange={toggleSelection} ref={inputRef}/>
             <span className={styles.checkmark}></span>
             <label htmlFor={label}>{label} {SIDEBAR.BLOGS}</label>
         </div>

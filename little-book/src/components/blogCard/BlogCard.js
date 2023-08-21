@@ -6,8 +6,8 @@ import styles from './BlogCard.module.scss';
  * @returns BlogCard Component
  */
 const BlogCard = props => {
-    const {title, type, details, selected} = props.blogData;
-    const {updateCurrentBlog} = props;
+    const {title, type, details} = props.blogData;
+    const {updateCurrentBlog, selected} = props;
 
     // Method to select blog
     const selectCurrentBlog = () => {

@@ -23,7 +23,7 @@ MemberCard.propTypes = {
     name: PropTypes.string,
     username: PropTypes.string,
     photo: PropTypes.string,
-    company: PropTypes.string,
+    company: PropTypes.object,
 };
 
 MemberCard.defaultProps = {

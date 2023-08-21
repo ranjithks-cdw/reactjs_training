@@ -23,12 +23,9 @@ const blogSlice = createSlice({
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
             state.currentBlog = state.filteredBlogData.length > 0 ? state.filteredBlogData[0]: null;
             state.scrollTop = true;
-            if(state.filteredBlogData.length >= 0) 
-                state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
         modifyCurrentBlog(state, action) {
-            state.currentBlog = {...action.payload, selected: true};
-            state.filteredBlogData = state.filteredBlogData.map(blog => (blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog, selected: false}));
+            state.currentBlog = {...action.payload};
             state.scrollTop = false;
         },
         modifySearchTerm(state, action) {
@@ -36,8 +33,6 @@ const blogSlice = createSlice({
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
             state.currentBlog = state.filteredBlogData.length > 0 ? state.filteredBlogData[0]: null;
             state.scrollTop = true;
-            if(state.filteredBlogData.length >= 0) 
-                state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
         modifyEditStatus(state,action) {
             state.isEditing = action.payload;
@@ -50,11 +45,9 @@ const blogSlice = createSlice({
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
             state.isEditing = false;
             state.scrollTop = true;
-            if(state.filteredBlogData.length >= 0) 
-                state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
         addNewBlog(state, action) {
-            const newBlog = {...action.payload, selected: true};
+            const newBlog = {...action.payload};
             if(!state.allBlogTypes.includes(newBlog.type.toLocaleLowerCase())) {
                 state.allBlogTypes.push(newBlog.type.toLocaleLowerCase());
             }
@@ -66,8 +59,6 @@ const blogSlice = createSlice({
             state.filteredBlogData = updateFilteredBlogs(state.blogData, state.selectedBlogTypes, state.searchTerm);
             state.scrollTop = true;
             state.isEditing = false;
-            if(state.filteredBlogData.length >= 0) 
-                state.filteredBlogData = state.filteredBlogData.map(blog => blog.title === state.currentBlog.title ? {...blog, selected: true} : {...blog,selected: false});
         },
     },
     extraReducers: builder => {
@@ -75,9 +66,7 @@ const blogSlice = createSlice({
             state.isLoad = true;
         });
         builder.addCase(retrieveBlogs.fulfilled, (state, action) => {
-            const blogs = action.payload.map((blog,index) => {
-                return index === 0 ? {...blog, selected: true} : {...blog, selected: false};
-            });
+            const blogs = action.payload;
             const allBlogTypes = blogs.map(blog => blog.type.toLocaleLowerCase());
             const uniqueTypes = allBlogTypes.filter((value, index, array) => array.indexOf(value) === index);
             state.isLoad = false;

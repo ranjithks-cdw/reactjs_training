@@ -28,16 +28,16 @@ const HomePage = () => {
     });
 
     // Method to retrieve users data and show in modal
-    const showMembers = useCallback(async () => {
+    const showMembers = async () => {
         setModal(MODALS.MEMBERS);
         const data = await retrieveUsers();
         setMembersList(data);
-        membersList.length >= 0 && setLoad(false);
-    },[membersList.length]);
+        setLoad(false);
+    };
 
-    const showAddBlogModal = useCallback(() => {
+    const showAddBlogModal = () => {
         setModal(MODALS.NEW_BLOG);
-    },[]);
+    };
 
     const cancelHandler = () => {
         setShowWarningModal(false);

@@ -43,14 +43,15 @@ const NewBlog = props => {
         }
     };
 
+    // Modify editing status if user is editing
     const changeEditStatus = useCallback(() => {
         const titleContent = titleRef.current.value.trim();
         const descContent = detailsRef.current.value.trim();
-        if(titleContent.length <= 0 || descContent.length <= 0) {
+        if(titleContent.length > 0 || descContent.length > 0) {
             dispatch(modifyEditStatus(true));
         }
         else {
-            dispatch(modifyEditStatus(true));
+            dispatch(modifyEditStatus(false));
         }
     },[]);
 

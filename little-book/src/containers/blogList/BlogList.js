@@ -16,11 +16,9 @@ const BlogList = props => {
     const dispatch = useDispatch();
     const blogListRef = useRef();
     const {showAddBlogModal, clearModal} = props;
-    const {filteredBlogData, isLoad, isEditing, scrollTop} = useSelector(state => {
+    const {filteredBlogData, currentBlog, isLoad, isEditing, scrollTop, searchTerm} = useSelector(state => {
         return state.blogs;
     });
-
-    const [searchValue, setSearchValue] = useState('');
     
     // Create new blog
     const createBlog = () => {
@@ -37,7 +35,6 @@ const BlogList = props => {
     // Change search term
     const updateSearchTerm = event => {
         const term = event.target.value;
-        setSearchValue(term);
         dispatch(modifySearchTerm(term));
     };
 
@@ -53,13 +50,13 @@ const BlogList = props => {
     
     const blogs = filteredBlogData.map((blog,index) => {
         blogListRef.current && scrollTop && blogListRef.current.scrollTo(0,0);
-        return <BlogCard blogData={blog} key={index} updateCurrentBlog={updateCurrentBlog}/>
+        return <BlogCard blogData={blog} key={index} updateCurrentBlog={updateCurrentBlog} selected={blog.title === currentBlog.title}/>
     });
     
     return (
         <div className={styles.blogListContainer}>
             <div className={styles.searchBar}>
-                <input type='text' className={styles.search} placeholder={INPUT_PLACEHOLDERS.SEARCH} value={searchValue} onChange={updateSearchTerm} onFocus={checkEditing}/>
+                <input type='text' className={styles.search} placeholder={INPUT_PLACEHOLDERS.SEARCH} value={searchTerm} onChange={updateSearchTerm} onFocus={checkEditing}/>
                 <Button className="newButton" btnClickHandler={createBlog}>{BUTTONS.NEW}</Button>
             </div>
             <div className={styles.blogsContainer} ref={blogListRef}>

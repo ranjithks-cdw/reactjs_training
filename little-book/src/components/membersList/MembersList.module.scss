@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.membersContainer {
+    @include display-flex(flex-start, flex-start, row, wrap);
+    gap: 40px 22.4px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

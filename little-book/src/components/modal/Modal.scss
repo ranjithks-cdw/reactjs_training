@@ -1,0 +1,26 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/variables.scss';
+.modalContainer {
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    @include display-flex(flex-end, flex-start, row, wrap);
+    background-color: rgba($color: #3e3e3e, $alpha: 0.5);
+    z-index: 99;
+
+    .modalTitle {
+        margin-bottom: 35px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        font-family: $font-roboto;
+        color: var(--black-color);
+    }
+    .modalContent {
+        width: 35%;
+        height: 100vh;
+        padding: 80px 55px;
+        background-color: var(--white-color);
+    }
+}

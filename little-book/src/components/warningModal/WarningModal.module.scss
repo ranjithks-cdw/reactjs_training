@@ -1,0 +1,21 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/variables.scss';
+.modalContainer {
+    @include display-flex(center, center, row, wrap);
+    background-color: rgba($color: #636161, $alpha: 0.9);
+    
+    .modalContent {
+        padding: 20px;
+        width: 32%;
+        height: 15%;
+        background-color: var(--white-color);
+    }
+
+    .modalTitle {
+        text-align: center;
+    }
+
+    .buttonsContainer {
+        @include display-flex(space-around, center, row, wrap);
+    }
+}
